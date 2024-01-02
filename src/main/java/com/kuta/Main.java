@@ -1,11 +1,14 @@
 package com.kuta;
 
+import java.io.Console;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import com.kuta.config.Config;
 import com.kuta.errorhandling.ErrorHandler;
+import com.kuta.io.IOWorker;
 
 public class Main {
     public static void main(String[] args) {
@@ -16,9 +19,9 @@ public class Main {
         ErrorHandler handler = new ErrorHandler();
 
         try {
-            
-        Config config = Config.initFromJsonFile("/home/charming/Projects/code/pv/java/alfa2/config/config.json");
 
+        System.out.println(IOWorker.isFile("/home/charming/Projects/code/pv/java/alfa2/config/config.json"));
+        Config config = Config.initFromJsonFile("/home/charming/Projects/code/pv/java/alfa2/config/config.jsomn");
 
         System.out.println(config.GET_OUTPUT_DIRECTORY() + config.GET_OUTPUT_FILENAME() + config.GET_PATH_TO_INPUT());
 
@@ -28,6 +31,10 @@ public class Main {
         } catch(IOException e){
             e.printStackTrace();
         }
+
+        System.out.println("ENTER to exit.");
+        System.console().readLine();
+
 
         
     }

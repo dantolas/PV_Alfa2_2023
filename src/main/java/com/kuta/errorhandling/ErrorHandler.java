@@ -12,6 +12,7 @@ public class ErrorHandler {
 
     public void HandleError(FileNotFoundException e){
 
+        e.printStackTrace();
     }
 
     public void HandleError(IOException e){

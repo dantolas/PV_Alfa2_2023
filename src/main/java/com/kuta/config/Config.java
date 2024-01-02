@@ -1,4 +1,4 @@
-package com.kuta;
+package com.kuta.config;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -9,6 +9,7 @@ import java.io.IOException;
 import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
 import com.kuta.errorhandling.ConfigInitException;
+import com.kuta.io.IOWorker;
 
 public class Config {
 
@@ -46,11 +47,18 @@ public class Config {
     }
     
 
+    private boolean configInitialized(){
+
+        return this.OUTPUT_DIRECTORY != null && this.PATH_TO_INPUT != null && this.OUTPUT_FILENAME != null;
+    }
     
 
-    public static Config initFromJsonFile(String filepath) throws FileNotFoundException,IOException{
+    public static Config initFromJsonFile(String filepath) throws FileNotFoundException,IOException,ConfigInitException{
 
         Gson gson = new Gson();
+
+        if(!IOWorker.isFile(filepath)) throw new FileNotFoundException("Config soubor nebyl nalezen");
+
         BufferedReader reader = new BufferedReader(new FileReader(new File(filepath)));
 
         StringBuilder jsonString = new StringBuilder();
@@ -64,10 +72,7 @@ public class Config {
 
         Config config = gson.fromJson(jsonString.toString(), Config.class);
         
-        if(
-            config.OUTPUT_DIRECTORY == null ||
-            config.PATH_TO_INPUT == null ||
-            config.OUTPUT_FILENAME == null
+        if(!config.configInitialized()
         ) throw new ConfigInitException("Jeden z atributu nebyl inicializovan. Zkontrolujte ze je config soubor ve spravnem formatu.");
 
 
