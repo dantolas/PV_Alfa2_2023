@@ -20,10 +20,9 @@ public class Main {
 
         try {
 
-        System.out.println(IOWorker.isFile("/home/charming/Projects/code/pv/java/alfa2/config/config.json"));
-        Config config = Config.initFromJsonFile("/home/charming/Projects/code/pv/java/alfa2/config/config.jsomn");
+            Config config = Config.initFromJsonFile("/home/charming/Projects/code/pv/java/alfa2/config/config.json");
 
-        System.out.println(config.GET_OUTPUT_DIRECTORY() + config.GET_OUTPUT_FILENAME() + config.GET_PATH_TO_INPUT());
+            System.out.println(config.GET_OUTPUT_DIRECTORY() + config.GET_OUTPUT_FILENAME() + config.GET_PATH_TO_INPUT());
 
         } catch(FileNotFoundException e){
             handler.HandleError(e);

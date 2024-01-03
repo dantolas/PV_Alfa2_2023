@@ -1,5 +1,7 @@
 {
     "cesta_k_souboru":"default",
     "adresar_umisteni_outputu":"default",
-    "nazev_output_souboru":"default"
+    "nazev_output_souboru":"default",
+    "adresar_umisteni_error_logu":"",
+    "adresar_umisteni_operacniho_logu":""
 }

@@ -4,7 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class ErrorHandler {
-   
+
    
     public void HandleError(Exception e){
         e.printStackTrace();
@@ -16,6 +16,10 @@ public class ErrorHandler {
     }
 
     public void HandleError(IOException e){
+        e.printStackTrace();
+    }
 
+    public void HandleError(ConfigInitException e){
+        e.printStackTrace();
     }
 }
