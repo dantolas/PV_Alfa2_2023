@@ -18,7 +18,13 @@ public class LogWriter {
     }
 
     public static void Init(String errorLogPath,String operationLogPath) throws LogWriterInitException{
-        if(!IOWorker.isDirectory(errorLogPath)) throw new LogWriterInitException("error");
+        if(!IOWorker.isDirectory(errorLogPath))
+         throw new LogWriterInitException("Poskytnuta cesta pro umisteni error logu nekonci adresarem. :"+errorLogPath);
+
+        if(!IOWorker.isDirectory(operationLogPath))
+        throw new LogWriterInitException("Poskytnuta cesta pro umisteni operacniho logu nekonci adresarem. :"+operationLogPath);
+
+
     }
 
     

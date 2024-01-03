@@ -28,12 +28,21 @@ public class IOWorker {
         return builder.toString();
     }
 
-    public static boolean isDirectory(String filepath){
-        return Files.isDirectory(Path.of(filepath));
+    public static boolean isDirectory(String filepath) throws SecurityException{
+        try {
+            return Files.isDirectory(Path.of(filepath));
+        } catch (SecurityException e) {
+            throw e;
+        }
     }
 
-    public static boolean isFile(String filepath){
-        return Files.isRegularFile(Path.of(filepath));
+    public static boolean isFile(String filepath) throws SecurityException{
+        try {
+            return Files.isRegularFile(Path.of(filepath));    
+        } catch (SecurityException e) {
+            throw e;
+        }
+        
     }
     
 }

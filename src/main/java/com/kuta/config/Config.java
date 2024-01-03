@@ -95,10 +95,23 @@ public class Config {
         }
     }
     
+    private void checkPathsValidity(){
+        if(!IOWorker.isDirectory(ERROR_LOG_DIRECTORY)) 
+        throw new ConfigInitException("Cesta k umisteni error logu nekonci adresarem. : "+ERROR_LOG_DIRECTORY);
+
+        if(!IOWorker.isFile(PATH_TO_INPUT))
+        throw new ConfigInitException("Cesta k input souboru nekonci souborem. :"+PATH_TO_INPUT);
+
+        if(!IOWorker.isDirectory(OUTPUT_DIRECTORY))
+        throw new ConfigInitException("Cesta k output adresari nekonci adresarem. :"+OUTPUT_DIRECTORY);
+
+        if(!IOWorker.isDirectory(OPERATION_LOG_DIRECTORY))
+        throw new ConfigInitException("Cesta k umisteni operacniho logu nekonci adresarem. :"+OPERATION_LOG_DIRECTORY);
+    }
 
     public static Config initFromJsonFile(String filepath) throws FileNotFoundException,IOException,ConfigInitException{
 
-        if(!IOWorker.isFile(filepath)) throw new FileNotFoundException("Config soubor nebyl nalezen");
+        if(!IOWorker.isFile(filepath)) throw new FileNotFoundException("Config soubor nebyl nalezen a mozna chybi.");
 
         String jsonString = IOWorker.readFileIntoString(filepath);
 
@@ -107,12 +120,11 @@ public class Config {
         Config config = gson.fromJson(jsonString.toString(), Config.class);
         
         if(!config.configInitialized()
-        ) throw new ConfigInitException("Jeden z atributu nebyl inicializovan. Zkontrolujte ze je config soubor ve spravnem formatu.");
+        ) throw new ConfigInitException("Jeden z atributu nebyl inicializovan. Zkontrolujte ze je config soubor ve spravnem formatu podle dokumentace.");
 
         config.checkDefaults();
 
-
-
+        config.checkPathsValidity();
 
         return config;
     }
