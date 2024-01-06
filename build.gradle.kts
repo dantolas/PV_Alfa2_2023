@@ -4,6 +4,7 @@
  * This is a general purpose Gradle build.
  * To learn more about Gradle by exploring our Samples at https://docs.gradle.org/8.5/samples
  */
+
 plugins{
     java
     id ("com.github.johnrengelman.shadow") version "8.1.1"
@@ -15,7 +16,9 @@ repositories{
 }
 
 dependencies{
-     implementation("com.google.code.gson:gson:2.10.1")
+    implementation("com.google.code.gson:gson:2.10.1")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.1")
+    testRuntimeOnly ("org.junit.jupiter:junit-jupiter-engine:5.8.1")
 }
 
 tasks {
@@ -28,3 +31,17 @@ tasks {
     }
     }
 }
+
+
+tasks.named<Test>("test") {
+    useJUnitPlatform()
+
+    maxHeapSize = "1G"
+
+    testLogging {
+        events("passed")
+    }
+}
+
+
+

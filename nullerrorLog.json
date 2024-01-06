@@ -1,0 +1,1 @@
+{"cas":"06/01/2024 20:16:38","id":"1","nazev_chyby":"Exception","text_chyby":"TestException","stacktrace":"java.lang.Exception: TestException\n\tat com.kuta.Main.main(Main.java:22)\n"}

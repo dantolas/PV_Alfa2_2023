@@ -31,10 +31,10 @@ public class Config {
     private String OPERATION_LOG_DIRECTORY;
 
     public static final String[] DEFAULT_PATHS = {
-        System.getProperty("User.dir")+"/src/main/resources/text.txt",
-        System.getProperty("User.dir")+"/output/",
+        System.getProperty("user.dir")+"/src/main/resources/text.txt",
+        System.getProperty("user.dir")+"/output/",
         "Compressed.txt",
-        System.getProperty("User.dir")+"/log/"
+        System.getProperty("user.dir")+"/log/"
     };
 
 
@@ -52,6 +52,13 @@ public class Config {
     }
 
 
+
+    @Override
+    public String toString() {
+        return "Config [PATH_TO_INPUT=" + PATH_TO_INPUT + ", OUTPUT_DIRECTORY=" + OUTPUT_DIRECTORY
+                + ", OUTPUT_FILENAME=" + OUTPUT_FILENAME + ", ERROR_LOG_DIRECTORY=" + ERROR_LOG_DIRECTORY
+                + ", OPERATION_LOG_DIRECTORY=" + OPERATION_LOG_DIRECTORY + "]";
+    }
 
     public String GET_PATH_TO_INPUT(){
         return PATH_TO_INPUT;
@@ -95,7 +102,7 @@ public class Config {
         }
     }
     
-    private void checkPathsValidity(){
+    private void checkPathsValidity() throws SecurityException{
         if(!IOWorker.isDirectory(ERROR_LOG_DIRECTORY)) 
         throw new ConfigInitException("Cesta k umisteni error logu nekonci adresarem. : "+ERROR_LOG_DIRECTORY);
 
@@ -109,7 +116,7 @@ public class Config {
         throw new ConfigInitException("Cesta k umisteni operacniho logu nekonci adresarem. :"+OPERATION_LOG_DIRECTORY);
     }
 
-    public static Config initFromJsonFile(String filepath) throws FileNotFoundException,IOException,ConfigInitException{
+    public static Config initFromJsonFile(String filepath) throws FileNotFoundException,IOException,ConfigInitException,SecurityException{
 
         if(!IOWorker.isFile(filepath)) throw new FileNotFoundException("Config soubor nebyl nalezen a mozna chybi.");
 

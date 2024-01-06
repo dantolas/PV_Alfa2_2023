@@ -5,6 +5,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -44,5 +45,21 @@ public class IOWorker {
         }
         
     }
+
+    public static void OverWriteFile(String text, String filepath) throws IOException{
+        writer = new BufferedWriter(new FileWriter(filepath));
+        writer.write(text);
+        writer.close();
+    }
+
+    public static void AppendWriteFile(String text, String filepath) throws IOException{
+        writer = new BufferedWriter(new FileWriter(filepath,true));
+        writer.write(text);
+        writer.close();
+    }
     
+    public static void CreateFile(String filepath) throws IOException,SecurityException,java.nio.file.FileAlreadyExistsException{
+        Path newFilePath = Path.of(filepath);
+        Files.createFile(newFilePath);
+    }
 }

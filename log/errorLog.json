@@ -3,6 +3,7 @@
         "cas":"",
         "id":"",
         "nazev_chyby":"",
+        "text_chyby":"",
         "stacktrace":""
     }
 
