@@ -5,11 +5,19 @@ import java.io.IOException;
 
 import com.kuta.log.LogWriter;
 
+/**
+ * This class provides functionality to handle all (propably) exceptions that may occur in the program.
+ * 
+ * All exceptions can just be passed to the HandleError method.
+ */
 public class ErrorHandler {
 
     private final String OBECNA_ERROR_ZPRAVA = "Prosim zkontrolujte nejnovejsi zaznam v errorLogu. ID:";
 
-   
+    /**
+     * Handles general Exception.
+     * @param e
+     */
     public void HandleError(Exception e){
         System.out.println("Nastala generalni chyba. Zprava: "+e.getMessage());
         try {
@@ -22,6 +30,10 @@ public class ErrorHandler {
         e.printStackTrace();
     }
 
+    /**
+     * Handles FileNotFoundException
+     * @param e
+     */
     public void HandleError(FileNotFoundException e){
         System.out.println("Nastala chyba pri hledani souboru. Zprava: "+e.getMessage());
         try {
@@ -33,6 +45,10 @@ public class ErrorHandler {
         e.printStackTrace();
     }
 
+    /**
+     * Handles IOException
+     * @param e
+     */
     public void HandleError(IOException e){
         System.out.println("Nastala chyba v praci s I/O systemem. Zprava:"+e.getMessage());
         try {
@@ -43,7 +59,10 @@ public class ErrorHandler {
         }
         e.printStackTrace();
     }
-
+    /**
+     * Handles ConfigInitException
+     * @param e
+     */
     public void HandleError(ConfigInitException e){
         System.out.println("Nastala chyba v inicializaci konfigurace. Zprava:"+e.getMessage());
         try {
@@ -54,7 +73,10 @@ public class ErrorHandler {
         }
         e.printStackTrace();
     }
-
+    /**
+     * Handles LogWriterInitException
+     * @param e
+     */
     public void HandleError(LogWriterInitException e){
         System.out.println("Nastala chyba v inicializaci zapisovace logu. Zprava:"+e.getMessage());
         try {

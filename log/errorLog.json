@@ -26,5 +26,12 @@
     "nazev_chyby": "java.lang.Exception",
     "text_chyby": "First real write",
     "stacktrace": "java.lang.Exception: First real write\n\tat com.kuta.Main.main(Main.java:29)\n"
+  },
+  {
+    "cas": "07/01/2024 15:53:53",
+    "id": "14a96c41-d418-4aa0-bfdb-3a12db5e4877",
+    "nazev_chyby": "java.lang.ClassCastException",
+    "text_chyby": "class java.util.ArrayList$SubList cannot be cast to class java.util.ArrayList (java.util.ArrayList$SubList and java.util.ArrayList are in module java.base of loader \u0027bootstrap\u0027)",
+    "stacktrace": "java.lang.ClassCastException: class java.util.ArrayList$SubList cannot be cast to class java.util.ArrayList (java.util.ArrayList$SubList and java.util.ArrayList are in module java.base of loader \u0027bootstrap\u0027)\n\tat com.kuta.compression.Compressor.getTopFrequencies(Compressor.java:47)\n\tat com.kuta.Main.main(Main.java:30)\n"
   }
 ]

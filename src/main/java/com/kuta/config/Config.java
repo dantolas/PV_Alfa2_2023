@@ -1,18 +1,19 @@
 package com.kuta.config;
 
-import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
 
 import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.internal.Streams;
 import com.kuta.errorhandling.ConfigInitException;
 import com.kuta.io.IOWorker;
 
+/**
+ * This class is a deserialized version of config/config.json file.
+ * 
+ * It provides all configuration to other parts of the program. 
+ */
 public class Config {
 
     @SerializedName("cesta_k_souboru")
@@ -37,7 +38,15 @@ public class Config {
         System.getProperty("user.dir")+"/log/"
     };
 
-
+    /**
+     * Manual Constructor
+     * 
+     * @param PATH_TO_INPUT
+     * @param OUTPUT_DIRECTORY
+     * @param OUTPUT_FILENAME
+     * @param ERROR_LOG_DIRECTORY
+     * @param OPERATION_LOG_DIRECTORY
+     */
     public Config(String PATH_TO_INPUT, String OUTPUT_DIRECTORY, String OUTPUT_FILENAME, String ERROR_LOG_DIRECTORY, String OPERATION_LOG_DIRECTORY){
         this.PATH_TO_INPUT = PATH_TO_INPUT;
         this.OUTPUT_DIRECTORY = OUTPUT_DIRECTORY;
@@ -46,7 +55,9 @@ public class Config {
         this.OPERATION_LOG_DIRECTORY = OPERATION_LOG_DIRECTORY;
 
     }
-
+    /**
+     * Default constructor
+     */
     public Config(){
 
     }
@@ -60,31 +71,61 @@ public class Config {
                 + ", OPERATION_LOG_DIRECTORY=" + OPERATION_LOG_DIRECTORY + "]";
     }
 
+    /**
+     * 
+     * @return - Path to input file.
+     */
     public String GET_PATH_TO_INPUT(){
         return PATH_TO_INPUT;
     }
 
+    /**
+     * 
+     * @return - Path to output directory.
+     */
     public String GET_OUTPUT_DIRECTORY(){
         return OUTPUT_DIRECTORY;
     }
 
+    /**
+     * 
+     * @return - File name of compressed output file.
+     */
     public String GET_OUTPUT_FILENAME(){
         return OUTPUT_FILENAME;
     }
     
+    /**
+     * 
+     * @return - Directory where error log should reside.
+     */
     public String GET_ERROR_LOG_DIRECTORY(){
         return ERROR_LOG_DIRECTORY;
     }
 
+    /**
+     * 
+     * @return - Directory where operation log should reside.
+     */
     public String GET_OPERATION_LOG_DIRECTORY(){
         return OPERATION_LOG_DIRECTORY;
     }
 
+    /**
+     * Helper method to check if all attributes have been initialized.
+     * Not very pretty, but iterating through class attributes looks even worse.
+     * @return - True if all attributes have been initialized
+     */
     private boolean configInitialized(){
 
-        return this.OUTPUT_DIRECTORY != null && this.PATH_TO_INPUT != null && this.OUTPUT_FILENAME != null;
+        return this.OUTPUT_DIRECTORY != null && this.PATH_TO_INPUT != null && this.OUTPUT_FILENAME != null && this.ERROR_LOG_DIRECTORY != null && this.OPERATION_LOG_DIRECTORY != null;
     }
 
+    /**
+     * Helper method to check what attributes should be set to the default value.
+     * 
+     * It only changes to default paths if the value in config file is exactly (case insensitive) 'default'
+     */
     private void checkDefaults(){
 
      
@@ -109,6 +150,10 @@ public class Config {
         }
     }
     
+    /**
+     * Helper method to check if all paths provided are valid.
+     * @throws SecurityException - Exception thrown when access to file is denied.
+     */
     private void checkPathsValidity() throws SecurityException{
         if(!IOWorker.isDirectory(ERROR_LOG_DIRECTORY)) 
         throw new ConfigInitException("Cesta k umisteni error logu nekonci adresarem. : "+ERROR_LOG_DIRECTORY);
@@ -123,9 +168,16 @@ public class Config {
         throw new ConfigInitException("Cesta k umisteni operacniho logu nekonci adresarem. :"+OPERATION_LOG_DIRECTORY);
     }
 
-    public static Config initFromJsonFile(String filepath) throws FileNotFoundException,IOException,ConfigInitException,SecurityException{
+    /**
+     * Creates and returns a Config instance from a json file.
+     * @param filepath - Path to config.json file
+     * @return - Fully prepared Config instance
+     * @throws ConfigInitException - Special exception thrown when any part of initialization fails.
+     */
+    public static Config initFromJsonFile(String filepath) throws ConfigInitException{
 
-        if(!IOWorker.isFile(filepath)) throw new FileNotFoundException("Config soubor nebyl nalezen a mozna chybi.");
+        try {
+            if(!IOWorker.isFile(filepath)) throw new FileNotFoundException("Config soubor nebyl nalezen a mozna chybi.");
 
         String jsonString = IOWorker.readFileIntoString(filepath);
 
@@ -141,5 +193,9 @@ public class Config {
         config.checkPathsValidity();
 
         return config;
+        } catch (Exception e) {
+            throw new ConfigInitException("Nastala chyba pri inicializaci konfigurace.");
+        }
+        
     }
 }
