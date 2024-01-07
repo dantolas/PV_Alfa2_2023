@@ -18,31 +18,21 @@ public class Main {
         System.out.println(System.getProperty("os.name"));
         System.out.println(System.getProperty("user.dir"));
 
-        try {
-            
-            LogWriter.writeTestErrorLog(new Exception("TestException"));
-        } catch (SecurityException | IOException e) {
-            e.printStackTrace();
-        }
-
+        
         ErrorHandler handler = new ErrorHandler();
 
         try {
 
             Config config = Config.initFromJsonFile("/home/charming/Projects/code/pv/java/alfa2/config/config.json");
+            LogWriter.Init(config.GET_ERROR_LOG_DIRECTORY(), config.GET_OPERATION_LOG_DIRECTORY());
 
-            System.out.println(config);
-
-        } catch(FileNotFoundException e){
-            handler.HandleError(e);
-
-        } catch(IOException e){
-            handler.HandleError(e);
         }catch(Exception e){
             handler.HandleError(e);
+            System.out.println("Jelikož nastala chyba v inicializaci, program se nyní vypne.");
+            System.exit(0);
         }
 
-        System.out.println("ENTER to exit.");
+        System.out.println("|ENTER| to exit.");
         System.console().readLine();
 
 

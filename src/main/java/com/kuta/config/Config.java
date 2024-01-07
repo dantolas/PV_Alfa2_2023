@@ -72,6 +72,13 @@ public class Config {
         return OUTPUT_FILENAME;
     }
     
+    public String GET_ERROR_LOG_DIRECTORY(){
+        return ERROR_LOG_DIRECTORY;
+    }
+
+    public String GET_OPERATION_LOG_DIRECTORY(){
+        return OPERATION_LOG_DIRECTORY;
+    }
 
     private boolean configInitialized(){
 
