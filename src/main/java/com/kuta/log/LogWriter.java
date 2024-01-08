@@ -41,7 +41,6 @@ public class LogWriter {
         String filePath = errorLogPath +ERROR_FILE_NAME;
 
         String logFileText = IOWorker.readFileIntoString(filePath);
-        
         ArrayList<ErrorLog> logs = new ArrayList<>(Arrays.asList(jsonToErrorLogArray(logFileText)));
         ErrorLog newLog = createNewLog(e);
         logs.add(newLog);

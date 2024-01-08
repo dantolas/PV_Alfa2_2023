@@ -33,5 +33,75 @@
     "nazev_chyby": "java.lang.ClassCastException",
     "text_chyby": "class java.util.ArrayList$SubList cannot be cast to class java.util.ArrayList (java.util.ArrayList$SubList and java.util.ArrayList are in module java.base of loader \u0027bootstrap\u0027)",
     "stacktrace": "java.lang.ClassCastException: class java.util.ArrayList$SubList cannot be cast to class java.util.ArrayList (java.util.ArrayList$SubList and java.util.ArrayList are in module java.base of loader \u0027bootstrap\u0027)\n\tat com.kuta.compression.Compressor.getTopFrequencies(Compressor.java:47)\n\tat com.kuta.Main.main(Main.java:30)\n"
+  },
+  {
+    "cas": "07/01/2024 22:17:27",
+    "id": "f9b9e4a4-053d-4a0b-8192-928d3ff20475",
+    "nazev_chyby": "java.io.FileNotFoundException",
+    "text_chyby": "/home/charming/Projects/code/pv/java/alfa2/src/main/resources/textText.txt (No such file or directory)",
+    "stacktrace": "java.io.FileNotFoundException: /home/charming/Projects/code/pv/java/alfa2/src/main/resources/textText.txt (No such file or directory)\n\tat java.base/java.io.FileInputStream.open0(Native Method)\n\tat java.base/java.io.FileInputStream.open(FileInputStream.java:219)\n\tat java.base/java.io.FileInputStream.\u003cinit\u003e(FileInputStream.java:158)\n\tat java.base/java.io.FileReader.\u003cinit\u003e(FileReader.java:75)\n\tat com.kuta.io.IOWorker.readFileIntoString(IOWorker.java:30)\n\tat com.kuta.Main.main(Main.java:28)\n"
+  },
+  {
+    "cas": "08/01/2024 08:32:58",
+    "id": "00cb6243-cbcd-4e4d-b124-7744c2a9d0a5",
+    "nazev_chyby": "java.lang.StringIndexOutOfBoundsException",
+    "text_chyby": "Range [1, 0) out of bounds for length 5",
+    "stacktrace": "java.lang.StringIndexOutOfBoundsException: Range [1, 0) out of bounds for length 5\n\tat java.base/jdk.internal.util.Preconditions$1.apply(Preconditions.java:55)\n\tat java.base/jdk.internal.util.Preconditions$1.apply(Preconditions.java:52)\n\tat java.base/jdk.internal.util.Preconditions$4.apply(Preconditions.java:213)\n\tat java.base/jdk.internal.util.Preconditions$4.apply(Preconditions.java:210)\n\tat java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:98)\n\tat java.base/jdk.internal.util.Preconditions.outOfBoundsCheckFromToIndex(Preconditions.java:112)\n\tat java.base/jdk.internal.util.Preconditions.checkFromToIndex(Preconditions.java:349)\n\tat java.base/java.lang.String.checkBoundsBeginEnd(String.java:4608)\n\tat java.base/java.lang.String.substring(String.java:2720)\n\tat com.kuta.compression.Compressor.getCompressedText(Compressor.java:28)\n\tat com.kuta.Main.main(Main.java:32)\n"
+  },
+  {
+    "cas": "08/01/2024 09:27:07",
+    "id": "e8d60c02-3c32-44c1-b470-8ce78d250126",
+    "nazev_chyby": "java.util.regex.PatternSyntaxException",
+    "text_chyby": "Unclosed group near index 3\n(20",
+    "stacktrace": "java.util.regex.PatternSyntaxException: Unclosed group near index 3\n(20\n\tat java.base/java.util.regex.Pattern.error(Pattern.java:2064)\n\tat java.base/java.util.regex.Pattern.accept(Pattern.java:1914)\n\tat java.base/java.util.regex.Pattern.group0(Pattern.java:3091)\n\tat java.base/java.util.regex.Pattern.sequence(Pattern.java:2160)\n\tat java.base/java.util.regex.Pattern.expr(Pattern.java:2105)\n\tat java.base/java.util.regex.Pattern.compile(Pattern.java:1805)\n\tat java.base/java.util.regex.Pattern.\u003cinit\u003e(Pattern.java:1452)\n\tat java.base/java.util.regex.Pattern.compile(Pattern.java:1091)\n\tat java.base/java.lang.String.replaceAll(String.java:2955)\n\tat com.kuta.compression.Compressor.compressTextVowels(Compressor.java:42)\n\tat com.kuta.Main.main(Main.java:33)\n"
+  },
+  {
+    "cas": "08/01/2024 09:28:18",
+    "id": "31526ab2-649f-4c52-82e8-809e7ebc9f42",
+    "nazev_chyby": "java.util.regex.PatternSyntaxException",
+    "text_chyby": "Unclosed group near index 3\n(20",
+    "stacktrace": "java.util.regex.PatternSyntaxException: Unclosed group near index 3\n(20\n\tat java.base/java.util.regex.Pattern.error(Pattern.java:2064)\n\tat java.base/java.util.regex.Pattern.accept(Pattern.java:1914)\n\tat java.base/java.util.regex.Pattern.group0(Pattern.java:3091)\n\tat java.base/java.util.regex.Pattern.sequence(Pattern.java:2160)\n\tat java.base/java.util.regex.Pattern.expr(Pattern.java:2105)\n\tat java.base/java.util.regex.Pattern.compile(Pattern.java:1805)\n\tat java.base/java.util.regex.Pattern.\u003cinit\u003e(Pattern.java:1452)\n\tat java.base/java.util.regex.Pattern.compile(Pattern.java:1091)\n\tat java.base/java.lang.String.replaceAll(String.java:2955)\n\tat com.kuta.compression.Compressor.compressTextVowels(Compressor.java:42)\n\tat com.kuta.Main.main(Main.java:33)\n"
+  },
+  {
+    "cas": "08/01/2024 09:41:47",
+    "id": "e41655a2-cae5-4458-af4e-649e5d600ac3",
+    "nazev_chyby": "java.util.regex.PatternSyntaxException",
+    "text_chyby": "Unclosed group near index 3\n(20",
+    "stacktrace": "java.util.regex.PatternSyntaxException: Unclosed group near index 3\n(20\n\tat java.base/java.util.regex.Pattern.error(Pattern.java:2064)\n\tat java.base/java.util.regex.Pattern.accept(Pattern.java:1914)\n\tat java.base/java.util.regex.Pattern.group0(Pattern.java:3091)\n\tat java.base/java.util.regex.Pattern.sequence(Pattern.java:2160)\n\tat java.base/java.util.regex.Pattern.expr(Pattern.java:2105)\n\tat java.base/java.util.regex.Pattern.compile(Pattern.java:1805)\n\tat java.base/java.util.regex.Pattern.\u003cinit\u003e(Pattern.java:1452)\n\tat java.base/java.util.regex.Pattern.compile(Pattern.java:1091)\n\tat java.base/java.lang.String.replaceAll(String.java:2955)\n\tat com.kuta.compression.Compressor.compressTextVowels(Compressor.java:42)\n\tat com.kuta.Main.main(Main.java:35)\n"
+  },
+  {
+    "cas": "08/01/2024 09:48:19",
+    "id": "20daf76e-6c68-4653-a086-851266a3ba95",
+    "nazev_chyby": "java.util.regex.PatternSyntaxException",
+    "text_chyby": "Unclosed group near index 3\n(20",
+    "stacktrace": "java.util.regex.PatternSyntaxException: Unclosed group near index 3\n(20\n\tat java.base/java.util.regex.Pattern.error(Pattern.java:2064)\n\tat java.base/java.util.regex.Pattern.accept(Pattern.java:1914)\n\tat java.base/java.util.regex.Pattern.group0(Pattern.java:3091)\n\tat java.base/java.util.regex.Pattern.sequence(Pattern.java:2160)\n\tat java.base/java.util.regex.Pattern.expr(Pattern.java:2105)\n\tat java.base/java.util.regex.Pattern.compile(Pattern.java:1805)\n\tat java.base/java.util.regex.Pattern.\u003cinit\u003e(Pattern.java:1452)\n\tat java.base/java.util.regex.Pattern.compile(Pattern.java:1091)\n\tat java.base/java.lang.String.replaceAll(String.java:2955)\n\tat com.kuta.compression.Compressor.compressTextVowels(Compressor.java:43)\n\tat com.kuta.Main.main(Main.java:35)\n"
+  },
+  {
+    "cas": "08/01/2024 09:48:58",
+    "id": "c31ae98f-b547-45dc-a8fc-32744f1b43e4",
+    "nazev_chyby": "java.util.regex.PatternSyntaxException",
+    "text_chyby": "Unclosed group near index 3\n(20",
+    "stacktrace": "java.util.regex.PatternSyntaxException: Unclosed group near index 3\n(20\n\tat java.base/java.util.regex.Pattern.error(Pattern.java:2064)\n\tat java.base/java.util.regex.Pattern.accept(Pattern.java:1914)\n\tat java.base/java.util.regex.Pattern.group0(Pattern.java:3091)\n\tat java.base/java.util.regex.Pattern.sequence(Pattern.java:2160)\n\tat java.base/java.util.regex.Pattern.expr(Pattern.java:2105)\n\tat java.base/java.util.regex.Pattern.compile(Pattern.java:1805)\n\tat java.base/java.util.regex.Pattern.\u003cinit\u003e(Pattern.java:1452)\n\tat java.base/java.util.regex.Pattern.compile(Pattern.java:1091)\n\tat java.base/java.lang.String.replaceAll(String.java:2955)\n\tat com.kuta.compression.Compressor.compressTextVowels(Compressor.java:43)\n\tat com.kuta.Main.main(Main.java:36)\n"
+  },
+  {
+    "cas": "08/01/2024 09:50:22",
+    "id": "76d5fe0d-ca96-46a5-bfc1-5b150633b075",
+    "nazev_chyby": "java.util.regex.PatternSyntaxException",
+    "text_chyby": "Unclosed group near index 3\n(20",
+    "stacktrace": "java.util.regex.PatternSyntaxException: Unclosed group near index 3\n(20\n\tat java.base/java.util.regex.Pattern.error(Pattern.java:2064)\n\tat java.base/java.util.regex.Pattern.accept(Pattern.java:1914)\n\tat java.base/java.util.regex.Pattern.group0(Pattern.java:3091)\n\tat java.base/java.util.regex.Pattern.sequence(Pattern.java:2160)\n\tat java.base/java.util.regex.Pattern.expr(Pattern.java:2105)\n\tat java.base/java.util.regex.Pattern.compile(Pattern.java:1805)\n\tat java.base/java.util.regex.Pattern.\u003cinit\u003e(Pattern.java:1452)\n\tat java.base/java.util.regex.Pattern.compile(Pattern.java:1091)\n\tat java.base/java.lang.String.replaceAll(String.java:2955)\n\tat com.kuta.compression.Compressor.compressTextVowels(Compressor.java:43)\n\tat com.kuta.Main.main(Main.java:36)\n"
+  },
+  {
+    "cas": "08/01/2024 09:51:02",
+    "id": "53a59e46-8be2-4105-84cc-e8bc8b1fbada",
+    "nazev_chyby": "java.util.regex.PatternSyntaxException",
+    "text_chyby": "Unclosed group near index 3\n(20",
+    "stacktrace": "java.util.regex.PatternSyntaxException: Unclosed group near index 3\n(20\n\tat java.base/java.util.regex.Pattern.error(Pattern.java:2064)\n\tat java.base/java.util.regex.Pattern.accept(Pattern.java:1914)\n\tat java.base/java.util.regex.Pattern.group0(Pattern.java:3091)\n\tat java.base/java.util.regex.Pattern.sequence(Pattern.java:2160)\n\tat java.base/java.util.regex.Pattern.expr(Pattern.java:2105)\n\tat java.base/java.util.regex.Pattern.compile(Pattern.java:1805)\n\tat java.base/java.util.regex.Pattern.\u003cinit\u003e(Pattern.java:1452)\n\tat java.base/java.util.regex.Pattern.compile(Pattern.java:1091)\n\tat java.base/java.lang.String.replaceAll(String.java:2955)\n\tat com.kuta.compression.Compressor.compressTextVowels(Compressor.java:43)\n\tat com.kuta.Main.main(Main.java:36)\n"
+  },
+  {
+    "cas": "08/01/2024 09:58:43",
+    "id": "33b553c0-7184-43c6-8a8a-59585d4d78d7",
+    "nazev_chyby": "java.util.regex.PatternSyntaxException",
+    "text_chyby": "Unclosed group near index 3\n(20",
+    "stacktrace": "java.util.regex.PatternSyntaxException: Unclosed group near index 3\n(20\n\tat java.base/java.util.regex.Pattern.error(Pattern.java:2064)\n\tat java.base/java.util.regex.Pattern.accept(Pattern.java:1914)\n\tat java.base/java.util.regex.Pattern.group0(Pattern.java:3091)\n\tat java.base/java.util.regex.Pattern.sequence(Pattern.java:2160)\n\tat java.base/java.util.regex.Pattern.expr(Pattern.java:2105)\n\tat java.base/java.util.regex.Pattern.compile(Pattern.java:1805)\n\tat java.base/java.util.regex.Pattern.\u003cinit\u003e(Pattern.java:1452)\n\tat java.base/java.util.regex.Pattern.compile(Pattern.java:1091)\n\tat java.base/java.lang.String.replaceAll(String.java:2955)\n\tat com.kuta.compression.Compressor.compressTextVowels(Compressor.java:43)\n\tat com.kuta.Main.main(Main.java:36)\n"
   }
 ]

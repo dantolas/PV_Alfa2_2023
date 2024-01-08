@@ -32,7 +32,7 @@ public class Config {
     private String OPERATION_LOG_DIRECTORY;
 
     public static final String[] DEFAULT_PATHS = {
-        System.getProperty("user.dir")+"/src/main/resources/text.txt",
+        System.getProperty("user.dir")+"/src/main/resources/testText.txt",
         System.getProperty("user.dir")+"/output/",
         "Compressed.txt",
         System.getProperty("user.dir")+"/log/"
@@ -194,7 +194,7 @@ public class Config {
 
         return config;
         } catch (Exception e) {
-            throw new ConfigInitException("Nastala chyba pri inicializaci konfigurace.");
+            throw new ConfigInitException("Nastala chyba pri inicializaci konfigurace. :"+e.getMessage());
         }
         
     }

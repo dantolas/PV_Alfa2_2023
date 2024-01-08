@@ -2,6 +2,7 @@ package com.kuta.errorhandling;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.regex.PatternSyntaxException;
 
 import com.kuta.log.LogWriter;
 
@@ -27,7 +28,6 @@ public class ErrorHandler {
             System.out.println("Nepodařilo se napsat log.");
         }
         
-        e.printStackTrace();
     }
 
     /**
@@ -42,7 +42,6 @@ public class ErrorHandler {
         } catch (IOException e1) {
             System.out.println("Nepodařilo se napsat log.");
         }
-        e.printStackTrace();
     }
 
     /**
@@ -57,7 +56,6 @@ public class ErrorHandler {
         } catch (IOException e1) {
             System.out.println("Nepodařilo se napsat log.");
         }
-        e.printStackTrace();
     }
     /**
      * Handles ConfigInitException
@@ -71,7 +69,6 @@ public class ErrorHandler {
         } catch (IOException e1) {
             System.out.println("Nepodařilo se napsat log.");
         }
-        e.printStackTrace();
     }
     /**
      * Handles LogWriterInitException
@@ -85,7 +82,6 @@ public class ErrorHandler {
         } catch (IOException e1) {
             System.out.println("Nepodařilo se napsat log.");
         }
-        e.printStackTrace();
     }
 
     public void HandleError(SecurityException e){
@@ -96,6 +92,15 @@ public class ErrorHandler {
         } catch (IOException e1) {
             System.out.println("Nepodařilo se napsat log.");
         }
-        e.printStackTrace();
     }
+    public void HandleError(PatternSyntaxException e){
+        System.out.println("Nastala chyba s kompilaci regex vzoru. Zprava:"+e.getMessage());
+        try {
+            String newLogId = LogWriter.writeErrorLog(e);
+            System.out.println(OBECNA_ERROR_ZPRAVA + newLogId);
+        } catch (IOException e1) {
+            System.out.println("Nepodařilo se napsat log.");
+        }
+    }
+
 }
