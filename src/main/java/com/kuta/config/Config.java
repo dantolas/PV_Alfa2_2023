@@ -16,6 +16,8 @@ import com.kuta.io.IOWorker;
  */
 public class Config {
 
+    public static transient final String DEFAULT_CONFIG_PATH = System.getProperty("user.dir")+"";
+
     @SerializedName("cesta_k_souboru")
     private String PATH_TO_INPUT;
 

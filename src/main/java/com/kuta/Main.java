@@ -21,27 +21,29 @@ import com.kuta.log.LogWriter;
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println(System.getProperty("os.name"));
-        System.out.println(System.getProperty("user.dir"));
-        System.out.println(STARTUP_MESSAGE);
-        Scanner console = new Scanner(System.in);
-        while(true){
-            System.out.print(INPUT_POINTER);
-            String input = console.nextLine();
-
-            break;
-        }
-        
         ErrorHandler handler = new ErrorHandler();
 
         try {
+            System.out.println(System.getProperty("os.name"));
+            System.out.println(System.getProperty("user.dir"));
+            System.out.println(STARTUP_MESSAGE);
+            Scanner console = new Scanner(System.in);
             Config config = Config.initFromJsonFile("/home/charming/Projects/code/pv/java/alfa2/config/config.json");
             LogWriter.Init(config.GET_ERROR_LOG_DIRECTORY(), config.GET_OPERATION_LOG_DIRECTORY());
-            String testText = IOWorker.readFileIntoString("/home/charming/Projects/code/pv/java/alfa2/src/main/resources/testTextShort.txt");
             Compressor compressor = new Compressor();
-            System.out.println(compressor.getWordCount(testText));
-            System.out.println(compressor.getTopFrequencies(compressor.getFrequencyMap(testText), 20));
-            System.out.println(compressor.getCompressedText(testText));
+            
+            while(true){
+            while (true) {
+                System.out.print(INPUT_POINTER);
+                String input = console.nextLine();
+                
+                try {
+                    
+                } catch (Exception e) {
+                    System.out.println("Invalid input.");
+                }
+            }
+            }
 
         }
         catch(SecurityException e){
@@ -53,12 +55,12 @@ public class Main {
         catch(ConfigInitException e){
             handler.HandleError(e);
         }
-        catch(FileNotFoundException e){
-            handler.HandleError(e);
-        }
-        catch(IOException e){
-            handler.HandleError(e);
-        }
+        // catch(FileNotFoundException e){
+        //     handler.HandleError(e);
+        // }
+        // catch(IOException e){
+        //     handler.HandleError(e);
+        // }
         catch(PatternSyntaxException e){
             handler.HandleError(e);
         }
