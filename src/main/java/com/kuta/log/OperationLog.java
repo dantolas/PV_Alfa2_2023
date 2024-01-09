@@ -2,6 +2,9 @@ package com.kuta.log;
 
 import com.google.gson.annotations.SerializedName;
 
+/**
+ * Class used to serialize and deserialize operation logs
+ */
 public class OperationLog {
     @SerializedName("cas")
     public String time;

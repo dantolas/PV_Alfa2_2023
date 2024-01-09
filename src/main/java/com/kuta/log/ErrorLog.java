@@ -5,6 +5,9 @@ import java.time.format.DateTimeFormatter;
 import com.google.gson.annotations.SerializedName;
 import com.kuta.config.Config;
 
+/**
+ * Class used to serialize and deserialize all Error logs
+ */
 public class ErrorLog {
 
     @SerializedName("cas")

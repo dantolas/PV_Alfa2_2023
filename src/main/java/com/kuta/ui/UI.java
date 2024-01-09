@@ -11,6 +11,12 @@ import com.kuta.errorhandling.ErrorHandler;
 import com.kuta.io.IOWorker;
 import com.kuta.log.LogWriter;
 
+/**
+ * This class provides all the necessary functionality
+ * to interact with the client.
+ * 
+ * It basically just exists so that the Main class isn't so bloated.
+ */
 public class UI {
     private final String INPUT_POINTER;
     private final String STARTUP_MESSAGE;
@@ -26,6 +32,9 @@ public class UI {
         this.HANDLER = handler;
     }
 
+    /**
+     * Main code run on program start
+     */
     public void run(){
         Scanner scanner = new Scanner(System.in);
         System.out.println(STARTUP_MESSAGE);
@@ -41,9 +50,20 @@ public class UI {
         }
     }
 
-
+    /**
+     * Handle input by the user read from the console.
+     * 
+     * All input is handled by passing it to a switch, and running some code by case.
+     * @param input - User input
+     * @throws FileNotFoundException
+     * @throws IOException
+     * @throws CompressionFailedException - Special exception thrown when compression fails
+     */
     private void handleInput(String input) throws FileNotFoundException, IOException, CompressionFailedException{
         switch (input) {
+            case "":
+                break;
+
             case "help":
                 System.out.println(getHelp()); 
                 break;
@@ -69,7 +89,11 @@ public class UI {
                 break;
         }
     }
-
+    /**
+     * Used when user inputs 'help'
+     * Tells the user what he can input to activate program functions
+     * @return
+     */
     private String getHelp(){
         return 
         "============================================================"+
@@ -82,11 +106,21 @@ public class UI {
         "\n\n   exit -> Ukončit program."+
         "\n============================================================";
     }
-
+    /**
+     * Returns the programs working directory and OS name
+     * @return
+     */
     private String getSysInfo(){
         return "Working directory :"+System.getProperty("user.dir")+"\n Operating System:"+System.getProperty("os.name");
     }
 
+    /**
+     * Compresses the input file, creates the output file, writes logs
+     * 
+     * @throws FileNotFoundException
+     * @throws IOException
+     * @throws CompressionFailedException
+     */
     private void compress() throws FileNotFoundException, IOException, CompressionFailedException{
         long startTime = System.currentTimeMillis();
         System.out.println("| Začínáme kompresi |.");
@@ -99,12 +133,7 @@ public class UI {
         }
         System.out.println("| Komprese proběhla za "+((System.currentTimeMillis()-startTime)/1000)+"s. |");
         System.out.println("| "+output+" |");
-        LogWriter.writeOperationLog();
-        
-        
-        
-
-
+        LogWriter.writeOperationLog(output);
         
     }
 }

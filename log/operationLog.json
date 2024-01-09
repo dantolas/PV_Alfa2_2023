@@ -88,5 +88,68 @@
     "velikost_input_souboru": "607B",
     "velikost_komp_souboru": "585592B",
     "procentualni_komprese": "-96373.14%"
+  },
+  {
+    "cas": "09.01.2024_21-09-50",
+    "input_soubor": "/home/charming/Projects/code/pv/java/alfa2/src/main/resources/testTextShort.txt",
+    "status": "success",
+    "error_log_id": "",
+    "velikost_input_souboru": "607B",
+    "velikost_komp_souboru": "585592B",
+    "procentualni_komprese": "-96373.14%"
+  },
+  {
+    "cas": "09.01.2024_21-16-09",
+    "input_soubor": "/home/charming/Projects/code/pv/java/alfa2/src/main/resources/testTextShort.txt",
+    "status": "success",
+    "error_log_id": "",
+    "velikost_input_souboru": "607B",
+    "velikost_komp_souboru": "585592B",
+    "procentualni_komprese": "-96373.14%"
+  },
+  {
+    "cas": "09.01.2024_21-17-03",
+    "input_soubor": "/home/charming/Projects/code/pv/java/alfa2/src/main/resources/testTextShort.txt",
+    "status": "success",
+    "error_log_id": "",
+    "velikost_input_souboru": "607B",
+    "velikost_komp_souboru": "585592B",
+    "procentualni_komprese": "-96373.14%"
+  },
+  {
+    "cas": "09.01.2024_21-30-25",
+    "input_soubor": "/home/charming/Projects/code/pv/java/alfa2/src/main/resources/testTextShort.txt",
+    "status": "success",
+    "error_log_id": "",
+    "velikost_input_souboru": "607.0B",
+    "velikost_komp_souboru": "585592.0B",
+    "procentualni_komprese": "-96373.14662273476%"
+  },
+  {
+    "cas": "09.01.2024_21-34-19",
+    "input_soubor": "/home/charming/Projects/code/pv/java/alfa2/src/main/resources/testTextShort.txt",
+    "status": "success",
+    "error_log_id": "",
+    "velikost_input_souboru": "607.0B",
+    "velikost_komp_souboru": "585592.0B",
+    "procentualni_komprese": "-96373.14662273476%"
+  },
+  {
+    "cas": "09.01.2024_21-38-32",
+    "input_soubor": "/home/charming/Projects/code/pv/java/alfa2/src/main/resources/testTextShort.txt",
+    "status": "success",
+    "error_log_id": "",
+    "velikost_input_souboru": "607.0B",
+    "velikost_komp_souboru": "522.0B",
+    "procentualni_komprese": "14.003294892915989%"
+  },
+  {
+    "cas": "09.01.2024_21-39-47",
+    "input_soubor": "/home/charming/Projects/code/pv/java/alfa2/src/main/resources/testTextShort.txt",
+    "status": "success",
+    "error_log_id": "",
+    "velikost_input_souboru": "607.0B",
+    "velikost_komp_souboru": "522.0B",
+    "procentualni_komprese": "14.003294892915989%"
   }
 ]

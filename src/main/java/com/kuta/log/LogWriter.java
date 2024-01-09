@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.io.StringWriter;
 import java.io.PrintWriter;
 import java.nio.file.*;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.kuta.config.Config;
 import com.kuta.errorhandling.LogWriterInitException;
 import com.kuta.io.IOWorker;
@@ -34,6 +32,12 @@ public class LogWriter {
 
     /**
      * Writes a new entry to the error log file.
+     * It first reads and loads all the error logs
+     * currently in the file to an ArrayList.
+     * 
+     * Then a new log is created and appended to the list.
+     * 
+     * The list of logs is then serialized and written back to the file.
      * 
      * @param e - Exception to be written to the log
      * @return - UUID (String) of the newly created log
@@ -54,6 +58,7 @@ public class LogWriter {
     
     /**
      * Helper method to transform json String to ErrorLog array.
+     * 
      * 
      * Utilizes Google Gson open library
      * @param json - Json to be transformed
@@ -82,53 +87,92 @@ public class LogWriter {
         return newLog;
 
     }
-
-    public static void writeOperationLog() throws IOException{
+/**
+ * SUCESFULL OPERATION
+ * Writes a new entry to the operation log file.
+ * It first reads and loads all the operation logs
+ * to an Arraylist.
+ * 
+ * Then a new log is created and added to it.
+ * 
+ * Then the list is serialized and written back to the file.
+ * 
+ * @param outputPath - Path where a compressed file was created
+ * @throws IOException
+ */
+    public static void writeOperationLog(String outputPath) throws IOException{
         String filePath = operationLogPath +OPERATION_FILE_NAME;
 
         String logFileText = IOWorker.readFileIntoString(filePath);
         ArrayList<OperationLog> logs = new ArrayList<>(Arrays.asList(jsonToOperationLogArray(logFileText)));
         Config config = com.kuta.vendor.Gson.gson.fromJson(configJson,Config.class);
-        OperationLog newLog = createNewOperationLog(config.GET_PATH_TO_INPUT(),config.GET_OUTPUT_PATH());
+        OperationLog newLog = createNewOperationLog(config.GET_PATH_TO_INPUT(),outputPath);
         logs.add(newLog);
 
         logFileText = com.kuta.vendor.Gson.gson.toJson(logs);
         IOWorker.OverWriteFile(logFileText, filePath);
 
     }
-    public static void writeOperationLog(String errorLogId) throws IOException{
+/**
+ * FAILED OPERATION
+ * Writes a new entry to the operation log file.
+ * It first reads and loads all the operation logs
+ * to an Arraylist.
+ * 
+ * Then a new log is created and added to it.
+ * 
+ * Then the list is serialized and written back to the file.
+ * 
+ * @param outputPath - Path where a compressed file was created
+ * @param errorLogId - Id of the error log created along the failed operation
+ * @throws IOException
+ */
+    public static void writeOperationLog(String errorLogId,String outputPath) throws IOException{
         String filePath = operationLogPath +OPERATION_FILE_NAME;
 
         String logFileText = IOWorker.readFileIntoString(filePath);
         ArrayList<OperationLog> logs = new ArrayList<>(Arrays.asList(jsonToOperationLogArray(logFileText)));
         Config config = com.kuta.vendor.Gson.gson.fromJson(configJson,Config.class);
-        OperationLog newLog = createNewOperationLog(config.GET_PATH_TO_INPUT(),config.GET_OUTPUT_PATH(),errorLogId);
+        OperationLog newLog = createNewOperationLog(config.GET_PATH_TO_INPUT(),outputPath,errorLogId);
         logs.add(newLog);
 
         logFileText = com.kuta.vendor.Gson.gson.toJson(logs);
         IOWorker.OverWriteFile(logFileText, filePath);
 
     }
-
+    /**
+     * Helper method to transform a json string 
+     * to an operationLog[] array
+     * @param json 
+     * @return
+     */
     private static OperationLog[] jsonToOperationLogArray(String json){
         OperationLog[] logs = com.kuta.vendor.Gson.gson.fromJson(json, OperationLog[].class);
         return logs;
 
     }
-
+    /**
+     * SUCCESSFULL LOG
+     * Helper method to create new Operation log.
+     * This is the succesfull operation log version
+     * @param inputPath - Input path used during compression
+     * @param outputPath - Output path used during compression
+     * @return - new OperationLog instance
+     */
     private static OperationLog createNewOperationLog(String inputPath,String outputPath){
         OperationLog newLog;
         
         String systemTime = DateTimeFormatter.ofPattern("dd.MM.yyyy_HH-mm-ss").format(LocalDateTime.now());
-        Long inputSize = IOWorker.getFileSizeKB(inputPath);
+        double inputSize = IOWorker.getFileSizeKB(inputPath);
         if(inputSize <= 0){
             inputSize = IOWorker.getFileSizeB(inputPath);
-            Long outputSize = IOWorker.getFileSizeB(outputPath);
-            float quotient = (float) 100 - (((float) outputSize / inputSize) * 100);
-            String inputFileSize = Long.toString(inputSize) + "B";
-            String compressedFileSize = Long.toString(outputSize) + "B";
+            double outputSize = IOWorker.getFileSizeB(outputPath);
+            outputSize = IOWorker.getFileSizeB(outputPath);
+            float quotient =  (float)(100 - (( outputSize / inputSize) * 100));
+            String inputFileSize = Double.toString(inputSize) + "B";
+            String compressedFileSize = Double.toString(outputSize) + "B";
 
-            String compressionPercentage = Float.toString(quotient) + "%";
+            String compressionPercentage = Double.toString(quotient) + "%";
             newLog = new OperationLog(systemTime, inputPath, "success", "", inputFileSize, compressedFileSize,
                     compressionPercentage);
             return newLog;
@@ -136,30 +180,39 @@ public class LogWriter {
 
         if(inputSize >= 1_000_000){
             inputSize = IOWorker.getFileSizeMB(inputPath);
-            Long outputSize = IOWorker.getFileSizeMB(outputPath);
-            float quotient = (float)100 - (((float)outputSize / inputSize) * 100);
-            String inputFileSize = Long.toString(inputSize)+"MB";
-            String compressedFileSize = Long.toString(outputSize)+"MB";
+            double outputSize = IOWorker.getFileSizeMB(outputPath);
+            float quotient =  (float)(100 - (( outputSize / inputSize) * 100));
+            String inputFileSize = Double.toString(inputSize)+"MB";
+            String compressedFileSize = Double.toString(outputSize)+"MB";
             
-            String compressionPercentage = Float.toString(quotient)+"%";
+            String compressionPercentage = Double.toString(quotient)+"%";
             newLog = new OperationLog(systemTime, inputPath, "success", "", inputFileSize, compressedFileSize,
                     compressionPercentage);
             return newLog;
         }
-        
 
-        Long outputSize = IOWorker.getFileSizeKB(outputPath);
-        float quotient = (float)100 - (((float)outputSize / inputSize) * 100);
-        String inputFileSize = Long.toString(inputSize)+"KB";
-        String compressedFileSize = Long.toString(outputSize)+"KB";
+        double outputSize = IOWorker.getFileSizeKB(outputPath);
+        float quotient = (float) (100 - ((outputSize / inputSize) * 100));
+        String inputFileSize = Double.toString(inputSize)+"KB";
+        String compressedFileSize = Double.toString(outputSize)+"KB";
         
-        String compressionPercentage = Float.toString(quotient)+"%";
+        String compressionPercentage = Double.toString(quotient)+"%";
         newLog = new OperationLog(systemTime, inputPath, "success", "", inputFileSize, compressedFileSize,
                 compressionPercentage);
         return newLog;
 
     }
 
+    /**
+     * FAILURE LOG
+     * Helper method to create new Operation log.
+     * This is the failed operation log version
+     * 
+     * @param inputPath - Input path used during compression
+     * @param outputPath - Output path used during compression
+     * @param errorId - Id of the error log created with the failed operation
+     * @return - new OperationLog instance
+     */
     private static OperationLog createNewOperationLog(String inputPath,String outputPath,String errorId){
         OperationLog newLog;
         
@@ -169,18 +222,6 @@ public class LogWriter {
         newLog = new OperationLog(systemTime,inputPath,"failure","","","","");
         return newLog;
     }
-
-    // private static ErrorLog createNewOperationLog(Exception e){
-    //     String id = UUID.randomUUID().toString();
-    //     String systemTime = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss").format(LocalDateTime.now());
-    //     String exceptionName = e.getClass().getName();
-    //     String exceptionMessage = e.getMessage();
-    //     String stacktrace = StackTraceToString(e);
-    //     String xd = "";
-    //     ErrorLog newLog = new ErrorLog(id,systemTime,exceptionName,exceptionMessage,stacktrace,xd);
-    //     return newLog;
-
-    // }
 
     /**
      * Initializes all of the static functionality of the LogWriter.

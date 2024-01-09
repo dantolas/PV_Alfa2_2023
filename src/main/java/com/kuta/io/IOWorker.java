@@ -104,15 +104,32 @@ public class IOWorker {
         Files.createFile(newFilePath);
     }
 
-    public static long getFileSizeB(String filepath){
-        return new File(filepath).length();
+    /**
+     * Get size of file in bytes
+     * @param filepath
+     * @return
+     */
+    public static double getFileSizeB(String filepath){
+        File file = new File(filepath);
+        return file.length();
+        
     }
-
-    public static long getFileSizeKB(String filepath){
-        return getFileSizeB(filepath) / 1_000;
+    /**
+     * Get size of file in kilobytes
+     * @param filepath
+     * @return
+     */
+    public static double getFileSizeKB(String filepath){
+        File file = new File(filepath);
+        return file.length() / 1_024;
     }
-
-    public static long getFileSizeMB(String filepath){
-        return getFileSizeB(filepath) / 1_000_000;
+    /**
+     * Get size of file in megabytes
+     * @param filepath
+     * @return
+     */
+    public static double getFileSizeMB(String filepath){
+        File file = new File(filepath);
+        return file.length() / (1_024*1_024);
     }
 }
