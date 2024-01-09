@@ -20,9 +20,9 @@ public class IOWorker {
     private static BufferedWriter writer;
 
     /**
-     * Reads all contents of a file to String line by line
-     * @param filepath - Path leading to the file that should be read
-     * @return - String of the file contents
+     * Reads all contents of a file and returns as String
+     * @param filepath - Path leading to file.
+     * @return - String of the file contents.
      * @throws FileNotFoundException
      * @throws IOException
      */
@@ -102,5 +102,17 @@ public class IOWorker {
     public static void CreateFile(String filepath) throws IOException,SecurityException,java.nio.file.FileAlreadyExistsException{
         Path newFilePath = Path.of(filepath);
         Files.createFile(newFilePath);
+    }
+
+    public static long getFileSizeB(String filepath){
+        return new File(filepath).length();
+    }
+
+    public static long getFileSizeKB(String filepath){
+        return getFileSizeB(filepath) / 1_000;
+    }
+
+    public static long getFileSizeMB(String filepath){
+        return getFileSizeB(filepath) / 1_000_000;
     }
 }

@@ -83,12 +83,26 @@ public class LogWriter {
 
     }
 
-    public static void writeOperationLog(String inputPath) throws IOException{
+    public static void writeOperationLog() throws IOException{
         String filePath = operationLogPath +OPERATION_FILE_NAME;
 
         String logFileText = IOWorker.readFileIntoString(filePath);
         ArrayList<OperationLog> logs = new ArrayList<>(Arrays.asList(jsonToOperationLogArray(logFileText)));
-        OperationLog newLog = createNewOperationLog(inputPath);
+        Config config = com.kuta.vendor.Gson.gson.fromJson(configJson,Config.class);
+        OperationLog newLog = createNewOperationLog(config.GET_PATH_TO_INPUT(),config.GET_OUTPUT_PATH());
+        logs.add(newLog);
+
+        logFileText = com.kuta.vendor.Gson.gson.toJson(logs);
+        IOWorker.OverWriteFile(logFileText, filePath);
+
+    }
+    public static void writeOperationLog(String errorLogId) throws IOException{
+        String filePath = operationLogPath +OPERATION_FILE_NAME;
+
+        String logFileText = IOWorker.readFileIntoString(filePath);
+        ArrayList<OperationLog> logs = new ArrayList<>(Arrays.asList(jsonToOperationLogArray(logFileText)));
+        Config config = com.kuta.vendor.Gson.gson.fromJson(configJson,Config.class);
+        OperationLog newLog = createNewOperationLog(config.GET_PATH_TO_INPUT(),config.GET_OUTPUT_PATH(),errorLogId);
         logs.add(newLog);
 
         logFileText = com.kuta.vendor.Gson.gson.toJson(logs);
@@ -102,20 +116,51 @@ public class LogWriter {
 
     }
 
-    private static OperationLog createNewOperationLog(String inputPath){
+    private static OperationLog createNewOperationLog(String inputPath,String outputPath){
         OperationLog newLog;
         
         String systemTime = DateTimeFormatter.ofPattern("dd.MM.yyyy_HH-mm-ss").format(LocalDateTime.now());
-        String inputFileSize = "";
-        String compressedFileSize = "";
-        String compressionPercentage = "";
+        Long inputSize = IOWorker.getFileSizeKB(inputPath);
+        if(inputSize <= 0){
+            inputSize = IOWorker.getFileSizeB(inputPath);
+            Long outputSize = IOWorker.getFileSizeB(outputPath);
+            float quotient = (float) 100 - (((float) outputSize / inputSize) * 100);
+            String inputFileSize = Long.toString(inputSize) + "B";
+            String compressedFileSize = Long.toString(outputSize) + "B";
+
+            String compressionPercentage = Float.toString(quotient) + "%";
+            newLog = new OperationLog(systemTime, inputPath, "success", "", inputFileSize, compressedFileSize,
+                    compressionPercentage);
+            return newLog;
+        }
+
+        if(inputSize >= 1_000_000){
+            inputSize = IOWorker.getFileSizeMB(inputPath);
+            Long outputSize = IOWorker.getFileSizeMB(outputPath);
+            float quotient = (float)100 - (((float)outputSize / inputSize) * 100);
+            String inputFileSize = Long.toString(inputSize)+"MB";
+            String compressedFileSize = Long.toString(outputSize)+"MB";
+            
+            String compressionPercentage = Float.toString(quotient)+"%";
+            newLog = new OperationLog(systemTime, inputPath, "success", "", inputFileSize, compressedFileSize,
+                    compressionPercentage);
+            return newLog;
+        }
+        
+
+        Long outputSize = IOWorker.getFileSizeKB(outputPath);
+        float quotient = (float)100 - (((float)outputSize / inputSize) * 100);
+        String inputFileSize = Long.toString(inputSize)+"KB";
+        String compressedFileSize = Long.toString(outputSize)+"KB";
+        
+        String compressionPercentage = Float.toString(quotient)+"%";
         newLog = new OperationLog(systemTime, inputPath, "success", "", inputFileSize, compressedFileSize,
                 compressionPercentage);
         return newLog;
 
     }
 
-    private static OperationLog createNewOperationLog(String inputPath,String errorLogId){
+    private static OperationLog createNewOperationLog(String inputPath,String outputPath,String errorId){
         OperationLog newLog;
         
         String systemTime = DateTimeFormatter.ofPattern("dd.MM.yyyy_HH-mm-ss").format(LocalDateTime.now());

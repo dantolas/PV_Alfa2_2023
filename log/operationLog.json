@@ -1,12 +1,92 @@
 [
-    {
-        "cas":"02/01/2024 19:58:51",
-        "input_soubor":"/home/charming/Projects/code/pv/java/alfa2",
-        "status":"success",
-        "error_log_id":"",
-        "velikost_input_souboru":"",
-        "velikost_komp_souboru":"",
-        "procentualni_komprese":""
-        
-    }
+  {
+    "cas": "02/01/2024 19:58:51",
+    "input_soubor": "/home/charming/Projects/code/pv/java/alfa2",
+    "status": "success",
+    "error_log_id": "",
+    "velikost_input_souboru": "",
+    "velikost_komp_souboru": "",
+    "procentualni_komprese": ""
+  },
+  {
+    "cas": "09.01.2024_13-26-16",
+    "input_soubor": "/home/charming/Projects/code/pv/java/alfa2/src/main/resources/testTextLong.txt",
+    "status": "success",
+    "error_log_id": "",
+    "velikost_input_souboru": "657KB",
+    "velikost_komp_souboru": "585KB",
+    "procentualni_komprese": "100%"
+  },
+  {
+    "cas": "09.01.2024_13-30-48",
+    "input_soubor": "/home/charming/Projects/code/pv/java/alfa2/src/main/resources/testTextLong.txt",
+    "status": "success",
+    "error_log_id": "",
+    "velikost_input_souboru": "657KB",
+    "velikost_komp_souboru": "585KB",
+    "procentualni_komprese": "100%"
+  },
+  {
+    "cas": "09.01.2024_13-31-51",
+    "input_soubor": "/home/charming/Projects/code/pv/java/alfa2/src/main/resources/testTextLong.txt",
+    "status": "success",
+    "error_log_id": "",
+    "velikost_input_souboru": "657KB",
+    "velikost_komp_souboru": "585KB",
+    "procentualni_komprese": "100.0%"
+  },
+  {
+    "cas": "09.01.2024_13-32-25",
+    "input_soubor": "/home/charming/Projects/code/pv/java/alfa2/src/main/resources/testTextLong.txt",
+    "status": "success",
+    "error_log_id": "",
+    "velikost_input_souboru": "657KB",
+    "velikost_komp_souboru": "585KB",
+    "procentualni_komprese": "10.9589%"
+  },
+  {
+    "cas": "09.01.2024_13-39-15",
+    "input_soubor": "/home/charming/Projects/code/pv/java/alfa2/src/main/resources/testTextLong.txt",
+    "status": "success",
+    "error_log_id": "",
+    "velikost_input_souboru": "657KB",
+    "velikost_komp_souboru": "585KB",
+    "procentualni_komprese": "10.9589%"
+  },
+  {
+    "cas": "09.01.2024_13-41-48",
+    "input_soubor": "/home/charming/Projects/code/pv/java/alfa2/src/main/resources/testTextLong.txt",
+    "status": "success",
+    "error_log_id": "",
+    "velikost_input_souboru": "657KB",
+    "velikost_komp_souboru": "585KB",
+    "procentualni_komprese": "10.9589%"
+  },
+  {
+    "cas": "09.01.2024_13-42-22",
+    "input_soubor": "/home/charming/Projects/code/pv/java/alfa2/src/main/resources/testTextLong.txt",
+    "status": "success",
+    "error_log_id": "",
+    "velikost_input_souboru": "657KB",
+    "velikost_komp_souboru": "585KB",
+    "procentualni_komprese": "10.9589%"
+  },
+  {
+    "cas": "09.01.2024_13-43-48",
+    "input_soubor": "/home/charming/Projects/code/pv/java/alfa2/src/main/resources/testTextShort.txt",
+    "status": "success",
+    "error_log_id": "",
+    "velikost_input_souboru": "0KB",
+    "velikost_komp_souboru": "585KB",
+    "procentualni_komprese": "-Infinity%"
+  },
+  {
+    "cas": "09.01.2024_13-49-44",
+    "input_soubor": "/home/charming/Projects/code/pv/java/alfa2/src/main/resources/testTextShort.txt",
+    "status": "success",
+    "error_log_id": "",
+    "velikost_input_souboru": "607B",
+    "velikost_komp_souboru": "585592B",
+    "procentualni_komprese": "-96373.14%"
+  }
 ]

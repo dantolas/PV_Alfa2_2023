@@ -57,6 +57,16 @@ public class ErrorHandler {
             System.out.println("Nepodařilo se napsat log.");
         }
     }
+    public void HandleError(CompressionFailedException e){
+        System.out.println("Nastala chyba v kompresi. Zprava:"+e.getMessage());
+        try {
+            String newLogId = LogWriter.writeErrorLog(e);
+            LogWriter.writeOperationLog(newLogId);
+            System.out.println(OBECNA_ERROR_ZPRAVA + newLogId);
+        } catch (IOException e1) {
+            System.out.println("Nepodařilo se napsat log.");
+        }
+    }
     /**
      * Handles ConfigInitException
      * @param e

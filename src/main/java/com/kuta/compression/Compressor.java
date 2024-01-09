@@ -20,7 +20,7 @@ public class Compressor {
 
     }
 
-    public void compressToFile(String text,String outputPath,boolean TIME_TAG) throws IOException{
+    public String compressToFile(String text,String outputPath,boolean TIME_TAG) throws IOException{
         if(TIME_TAG){
             outputPath = addTimeTagToFilePath(outputPath);
         }
@@ -28,9 +28,9 @@ public class Compressor {
         
 
         String compressedText = getCompressedText(text);
-        System.out.println(outputPath);
         IOWorker.CreateFile(outputPath);
         IOWorker.OverWriteFile(compressedText, outputPath);
+        return outputPath;
     }
 
     private String addTimeTagToFilePath(String string){

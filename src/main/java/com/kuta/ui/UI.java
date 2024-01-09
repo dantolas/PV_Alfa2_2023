@@ -6,8 +6,10 @@ import java.util.Scanner;
 
 import com.kuta.compression.Compressor;
 import com.kuta.config.Config;
+import com.kuta.errorhandling.CompressionFailedException;
 import com.kuta.errorhandling.ErrorHandler;
 import com.kuta.io.IOWorker;
+import com.kuta.log.LogWriter;
 
 public class UI {
     private final String INPUT_POINTER;
@@ -26,8 +28,6 @@ public class UI {
 
     public void run(){
         Scanner scanner = new Scanner(System.in);
-        System.out.println(System.getProperty("user.dir"));
-        System.out.println("os.name");
         System.out.println(STARTUP_MESSAGE);
         System.out.println(getHelp());
         while (true) {
@@ -42,7 +42,7 @@ public class UI {
     }
 
 
-    private void handleInput(String input) throws FileNotFoundException, IOException{
+    private void handleInput(String input) throws FileNotFoundException, IOException, CompressionFailedException{
         switch (input) {
             case "help":
                 System.out.println(getHelp()); 
@@ -54,6 +54,10 @@ public class UI {
 
             case "log":
                 throw new IOException("Test exception from log input.");
+
+            case "sysinfo":
+                System.out.println(getSysInfo());
+                break;
                 
         
             case "exit":
@@ -61,7 +65,7 @@ public class UI {
                 System.exit(0);
                 break;
             default:
-                System.out.println("Command unknown.");
+                System.out.println("Neznámý příkaz '"+input+"'");
                 break;
         }
     }
@@ -71,24 +75,34 @@ public class UI {
         "============================================================"+
         "\nMůžete buď kompresovat soubor, nebo prohlížet logy."+
         "\nPřikazy:"+
-        "\nhelp -> Ukáže vám list příkazů."+
-        "\ncomp -> Provede kompresi. Vstupní soubor, výstup a další budou odpovídat konfiguraci."+
-        "\nlog -> Můžete prohlížet zapsané záznamy."+
-        "\n\nexit -> Ukončit program."+
+        "\n help -> Ukáže vám list příkazů."+
+        "\n comp -> Provede kompresi. Vstupní soubor, výstup a další budou odpovídat konfiguraci."+
+        "\n log -> Můžete prohlížet zapsané záznamy."+
+        "\n sysinfo -> Řekne vám odkud program běží, a jaký detekuje operační systém."+
+        "\n\n   exit -> Ukončit program."+
         "\n============================================================";
     }
 
-    private void compress() throws FileNotFoundException, IOException{
+    private String getSysInfo(){
+        return "Working directory :"+System.getProperty("user.dir")+"\n Operating System:"+System.getProperty("os.name");
+    }
+
+    private void compress() throws FileNotFoundException, IOException, CompressionFailedException{
         long startTime = System.currentTimeMillis();
-        System.out.println("Compression started.");
+        System.out.println("| Začínáme kompresi |.");
         String textToCompress = IOWorker.readFileIntoString(CONFIG.GET_PATH_TO_INPUT());
-        COMPRESSOR.compressToFile(textToCompress, CONFIG.GET_OUTPUT_PATH(), CONFIG.IS_TIME_TAG());
-        System.out.println("Compression finished in "+((System.currentTimeMillis()-startTime)/1000)+"s.");
+        String output = "";
         try {
-            
+            output = COMPRESSOR.compressToFile(textToCompress, CONFIG.GET_OUTPUT_PATH(), CONFIG.IS_TIME_TAG());
         } catch (Exception e) {
-            
+            throw new CompressionFailedException("Komprese selhala. Zkontrolujte nejnovější zápisy v operačním a error logu.");
         }
+        System.out.println("| Komprese proběhla za "+((System.currentTimeMillis()-startTime)/1000)+"s. |");
+        System.out.println("| "+output+" |");
+        LogWriter.writeOperationLog();
+        
+        
+        
 
 
         
