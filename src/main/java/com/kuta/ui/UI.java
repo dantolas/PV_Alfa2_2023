@@ -51,6 +51,10 @@ public class UI {
             case "comp":
                 compress();
                 break;
+
+            case "log":
+                throw new IOException("Test exception from log input.");
+                
         
             case "exit":
                 System.out.println("|Nashledanou|");

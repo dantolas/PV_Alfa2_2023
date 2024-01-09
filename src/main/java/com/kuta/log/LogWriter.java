@@ -83,9 +83,46 @@ public class LogWriter {
 
     }
 
-    public static void writeOperationLog(){
+    public static void writeOperationLog(String inputPath) throws IOException{
+        String filePath = operationLogPath +OPERATION_FILE_NAME;
 
+        String logFileText = IOWorker.readFileIntoString(filePath);
+        ArrayList<OperationLog> logs = new ArrayList<>(Arrays.asList(jsonToOperationLogArray(logFileText)));
+        OperationLog newLog = createNewOperationLog(inputPath);
+        logs.add(newLog);
 
+        logFileText = com.kuta.vendor.Gson.gson.toJson(logs);
+        IOWorker.OverWriteFile(logFileText, filePath);
+
+    }
+
+    private static OperationLog[] jsonToOperationLogArray(String json){
+        OperationLog[] logs = com.kuta.vendor.Gson.gson.fromJson(json, OperationLog[].class);
+        return logs;
+
+    }
+
+    private static OperationLog createNewOperationLog(String inputPath){
+        OperationLog newLog;
+        
+        String systemTime = DateTimeFormatter.ofPattern("dd.MM.yyyy_HH-mm-ss").format(LocalDateTime.now());
+        String inputFileSize = "";
+        String compressedFileSize = "";
+        String compressionPercentage = "";
+        newLog = new OperationLog(systemTime, inputPath, "success", "", inputFileSize, compressedFileSize,
+                compressionPercentage);
+        return newLog;
+
+    }
+
+    private static OperationLog createNewOperationLog(String inputPath,String errorLogId){
+        OperationLog newLog;
+        
+        String systemTime = DateTimeFormatter.ofPattern("dd.MM.yyyy_HH-mm-ss").format(LocalDateTime.now());
+        String inputFileSize = "";
+
+        newLog = new OperationLog(systemTime,inputPath,"failure","","","","");
+        return newLog;
     }
 
     // private static ErrorLog createNewOperationLog(Exception e){

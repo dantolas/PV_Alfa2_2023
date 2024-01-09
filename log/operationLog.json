@@ -2,9 +2,11 @@
     {
         "cas":"02/01/2024 19:58:51",
         "input_soubor":"/home/charming/Projects/code/pv/java/alfa2",
-        "konfigurace":{},
-        "chyba":0,
-        "id_error_logu":""
+        "status":"success",
+        "error_log_id":"",
+        "velikost_input_souboru":"",
+        "velikost_komp_souboru":"",
+        "procentualni_komprese":""
         
     }
 ]
