@@ -1,10 +1,15 @@
 package com.kuta.compression;
 
 import java.util.HashMap;
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Map;
 import java.util.regex.PatternSyntaxException;
+
+import com.kuta.io.IOWorker;
 
 public class Compressor {
     
@@ -15,7 +20,31 @@ public class Compressor {
 
     }
 
-    
+    public void compressToFile(String text,String outputPath,boolean TIME_TAG) throws IOException{
+        if(TIME_TAG){
+            outputPath = addTimeTagToFilePath(outputPath);
+        }
+
+        
+
+        String compressedText = getCompressedText(text);
+        System.out.println(outputPath);
+        IOWorker.CreateFile(outputPath);
+        IOWorker.OverWriteFile(compressedText, outputPath);
+    }
+
+    private String addTimeTagToFilePath(String string){
+        String[] split = string.split("\\.");
+        StringBuilder builder = new StringBuilder(split[0]);
+        builder.append("_");
+        builder.append(DateTimeFormatter.ofPattern("dd.MM.yyyy_HH-mm-ss").format(LocalDateTime.now()));
+        builder.append(".");
+        for(int i = 1; i < split.length;i++){
+            builder.append(split[i]);
+        }
+        return builder.toString();
+        
+    }
 
     public String getCompressedText(String text) throws PatternSyntaxException{
         

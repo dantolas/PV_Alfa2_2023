@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import java.nio.file.*;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.kuta.config.Config;
 import com.kuta.errorhandling.LogWriterInitException;
 import com.kuta.io.IOWorker;
 import java.time.format.DateTimeFormatter;
@@ -18,7 +19,8 @@ import java.util.UUID;
  * This class writes both Operation and Error logs.
  * All of the functionality is static, so no instances need to be created.
  * !!! HOWEVER, the class needs to be initialized with the init() function.
- * Paths to the directories where the logs should be have to be provided to the init method.
+ * Paths to the directories where the logs should be, have to be provided to the init() function.
+ * 
  */
 public class LogWriter {
 
@@ -26,7 +28,7 @@ public class LogWriter {
     private static final String OPERATION_FILE_NAME = "operationLog.json";
     private static String errorLogPath;
     private static String operationLogPath;
-    private static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
+    private static String configJson;
 
 
 
@@ -42,10 +44,10 @@ public class LogWriter {
 
         String logFileText = IOWorker.readFileIntoString(filePath);
         ArrayList<ErrorLog> logs = new ArrayList<>(Arrays.asList(jsonToErrorLogArray(logFileText)));
-        ErrorLog newLog = createNewLog(e);
+        ErrorLog newLog = createNewErrorLog(e);
         logs.add(newLog);
 
-        logFileText = gson.toJson(logs);
+        logFileText = com.kuta.vendor.Gson.gson.toJson(logs);
         IOWorker.OverWriteFile(logFileText, filePath);
         return newLog.id;
     }
@@ -59,7 +61,7 @@ public class LogWriter {
      */
     private static ErrorLog[] jsonToErrorLogArray(String json){
 
-        ErrorLog[] errorLogs = gson.fromJson(json,ErrorLog[].class);
+        ErrorLog[] errorLogs = com.kuta.vendor.Gson.gson.fromJson(json,ErrorLog[].class);
         return errorLogs;
     }
 
@@ -69,20 +71,34 @@ public class LogWriter {
      * @param e - Exception to create the object with
      * @return - ErrorLog instance
      */
-    private static ErrorLog createNewLog(Exception e){
+    private static ErrorLog createNewErrorLog(Exception e){
         String id = UUID.randomUUID().toString();
-        String systemTime = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss").format(LocalDateTime.now());
+        String systemTime = DateTimeFormatter.ofPattern("dd.MM.yyyy_HH-mm-ss").format(LocalDateTime.now());
         String exceptionName = e.getClass().getName();
         String exceptionMessage = e.getMessage();
         String stacktrace = StackTraceToString(e);
-        ErrorLog newLog = new ErrorLog(id,systemTime,exceptionName,exceptionMessage,stacktrace);
+        Config config = com.kuta.vendor.Gson.gson.fromJson(configJson, Config.class);
+        ErrorLog newLog = new ErrorLog(id,systemTime,exceptionName,exceptionMessage,stacktrace,config);
         return newLog;
 
     }
 
     public static void writeOperationLog(){
 
+
     }
+
+    // private static ErrorLog createNewOperationLog(Exception e){
+    //     String id = UUID.randomUUID().toString();
+    //     String systemTime = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss").format(LocalDateTime.now());
+    //     String exceptionName = e.getClass().getName();
+    //     String exceptionMessage = e.getMessage();
+    //     String stacktrace = StackTraceToString(e);
+    //     String xd = "";
+    //     ErrorLog newLog = new ErrorLog(id,systemTime,exceptionName,exceptionMessage,stacktrace,xd);
+    //     return newLog;
+
+    // }
 
     /**
      * Initializes all of the static functionality of the LogWriter.
@@ -94,7 +110,7 @@ public class LogWriter {
      * @param operationLogPath - Path leading to the directory where operation logs should be.
      * @throws LogWriterInitException - If any exception occurs, this special exception is thrown. 
      */
-    public static void Init(String errorLogPath,String operationLogPath) throws LogWriterInitException{
+    public static void Init(String errorLogPath,String operationLogPath,String configJson) throws LogWriterInitException{
         try {
             if(!IOWorker.isDirectory(errorLogPath))
          throw new LogWriterInitException("Poskytnuta cesta pro umisteni error logu nekonci adresarem. :"+errorLogPath);
@@ -113,6 +129,7 @@ public class LogWriter {
         LogWriter.errorLogPath = errorLogPath;
         LogWriter.operationLogPath = operationLogPath;
         checkFilesExist(errorLogPath, operationLogPath);
+        LogWriter.configJson = configJson;
 
         } catch (SecurityException e) {
             throw new LogWriterInitException("Nastal problém s přístupem k souborům. Zkontrolujte prosím že jsou všechny nakonfigurované soubory a složky správně přístupné.");
@@ -134,10 +151,12 @@ public class LogWriter {
         try {
             if(!IOWorker.isFile(errorLogPath+ERROR_FILE_NAME)){
             IOWorker.CreateFile(errorLogPath+ERROR_FILE_NAME);
+            IOWorker.OverWriteFile("[]", errorLogPath+ERROR_FILE_NAME);
             }
 
             if(!IOWorker.isFile(operationLogPath+OPERATION_FILE_NAME)){
             IOWorker.CreateFile(operationLogPath+OPERATION_FILE_NAME);
+            IOWorker.OverWriteFile("[]", operationLogPath+OPERATION_FILE_NAME);
             }
         }catch (FileAlreadyExistsException e){
 

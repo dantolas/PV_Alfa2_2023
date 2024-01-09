@@ -32,8 +32,10 @@ public class Config {
 
     @SerializedName("adresar_umisteni_operacniho_logu")
     private String OPERATION_LOG_DIRECTORY;
+    @SerializedName("casovy_tag_v_nazvu")
+    private String TIME_TAG;
 
-    public static final String[] DEFAULT_PATHS = {
+    public transient static final String[] DEFAULT_PATHS = {
         System.getProperty("user.dir")+"/src/main/resources/testText.txt",
         System.getProperty("user.dir")+"/output/",
         "Compressed.txt",
@@ -49,12 +51,13 @@ public class Config {
      * @param ERROR_LOG_DIRECTORY
      * @param OPERATION_LOG_DIRECTORY
      */
-    public Config(String PATH_TO_INPUT, String OUTPUT_DIRECTORY, String OUTPUT_FILENAME, String ERROR_LOG_DIRECTORY, String OPERATION_LOG_DIRECTORY){
+    public Config(String PATH_TO_INPUT, String OUTPUT_DIRECTORY, String OUTPUT_FILENAME, String ERROR_LOG_DIRECTORY, String OPERATION_LOG_DIRECTORY,String TIME_TAG){
         this.PATH_TO_INPUT = PATH_TO_INPUT;
         this.OUTPUT_DIRECTORY = OUTPUT_DIRECTORY;
         this.OUTPUT_FILENAME = OUTPUT_FILENAME;
         this.ERROR_LOG_DIRECTORY = ERROR_LOG_DIRECTORY;
         this.OPERATION_LOG_DIRECTORY = OPERATION_LOG_DIRECTORY;
+        this.TIME_TAG = TIME_TAG;
 
     }
     /**
@@ -83,6 +86,14 @@ public class Config {
 
     /**
      * 
+     * @return - Joined directory and filename into a path
+     */
+    public String GET_OUTPUT_PATH(){
+        return this.OUTPUT_DIRECTORY + OUTPUT_FILENAME;
+    }
+
+    /**
+     * 
      * @return - Path to output directory.
      */
     public String GET_OUTPUT_DIRECTORY(){
@@ -103,6 +114,14 @@ public class Config {
      */
     public String GET_ERROR_LOG_DIRECTORY(){
         return ERROR_LOG_DIRECTORY;
+    }
+
+    /**
+     * 
+     * @return - True if the output should be time tagged
+     */
+    public boolean IS_TIME_TAG(){
+        return this.TIME_TAG.toLowerCase().startsWith("a");
     }
 
     /**
@@ -170,6 +189,18 @@ public class Config {
         throw new ConfigInitException("Cesta k umisteni operacniho logu nekonci adresarem. :"+OPERATION_LOG_DIRECTORY);
     }
 
+    private void checkFileExtensions(){
+        String[] split = PATH_TO_INPUT.split("\\.");
+        if(!split[split.length-1].equals("txt"))
+        throw new ConfigInitException("Input soubor neni textovy. (.txt)");
+        
+        split = OUTPUT_FILENAME.split("\\.");
+        if(!split[split.length-1].equals("txt")) OUTPUT_FILENAME+= ".txt";
+
+
+
+    }
+
     /**
      * Creates and returns a Config instance from a json file.
      * @param filepath - Path to config.json file
@@ -193,6 +224,8 @@ public class Config {
         config.checkDefaults();
 
         config.checkPathsValidity();
+
+        config.checkFileExtensions();
 
         return config;
         } catch (Exception e) {

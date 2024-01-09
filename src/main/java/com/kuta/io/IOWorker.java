@@ -69,7 +69,7 @@ public class IOWorker {
     }
 
     /**
-     * Writes to a file, completely overwriting old conent.
+     * Writes to a file specified by filepath, overwriting old content.
      * @param text - Text to be written to file
      * @param filepath - Path to the file
      * @throws IOException

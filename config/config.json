@@ -2,6 +2,7 @@
     "cesta_k_souboru":"/home/charming/Projects/code/pv/java/alfa2/src/main/resources/testTextLong.txt",
     "adresar_umisteni_outputu":"default",
     "nazev_output_souboru":"default",
+    "casovy_tag_v_nazvu":"A",
     "adresar_umisteni_error_logu":"default",
     "adresar_umisteni_operacniho_logu":"default"
 }
