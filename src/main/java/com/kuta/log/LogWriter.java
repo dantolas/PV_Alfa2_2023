@@ -29,7 +29,7 @@ public class LogWriter {
     private static final String OPERATION_FILE_NAME = "operationLog.json";
     private static String errorLogPath;
     private static String operationLogPath;
-    private static String configJson;
+    private static Config config;
 
 
 
@@ -85,7 +85,7 @@ public class LogWriter {
         String exceptionName = e.getClass().getName();
         String exceptionMessage = e.getMessage();
         String stacktrace = StackTraceToString(e);
-        Config config = com.kuta.vendor.Gson.gson.fromJson(configJson, Config.class);
+        Config config = LogWriter.config;
         ErrorLog newLog = new ErrorLog(id,systemTime,exceptionName,exceptionMessage,stacktrace,config);
         return newLog;
 
@@ -108,8 +108,7 @@ public class LogWriter {
 
         String logFileText = IOWorker.readFileIntoString(filePath);
         ArrayList<OperationLog> logs = new ArrayList<>(Arrays.asList(jsonToOperationLogArray(logFileText)));
-        Config config = com.kuta.vendor.Gson.gson.fromJson(configJson,Config.class);
-        OperationLog newLog = createNewOperationLog(config.GET_PATH_TO_INPUT(),outputPath);
+        OperationLog newLog = createNewOperationLog(LogWriter.config.GET_PATH_TO_INPUT(),outputPath);
         logs.add(newLog);
 
         logFileText = com.kuta.vendor.Gson.gson.toJson(logs);
@@ -135,8 +134,7 @@ public class LogWriter {
 
         String logFileText = IOWorker.readFileIntoString(filePath);
         ArrayList<OperationLog> logs = new ArrayList<>(Arrays.asList(jsonToOperationLogArray(logFileText)));
-        Config config = com.kuta.vendor.Gson.gson.fromJson(configJson,Config.class);
-        OperationLog newLog = createNewOperationLog(config.GET_PATH_TO_INPUT(),outputPath,errorLogId);
+        OperationLog newLog = createNewOperationLog(LogWriter.config.GET_PATH_TO_INPUT(),outputPath,errorLogId);
         logs.add(newLog);
 
         logFileText = com.kuta.vendor.Gson.gson.toJson(logs);
@@ -239,7 +237,9 @@ public class LogWriter {
      * @param operationLogPath - Path leading to the directory where operation logs should be.
      * @throws LogWriterInitException - If any exception occurs, this special exception is thrown. 
      */
-    public static void Init(String errorLogPath,String operationLogPath,String configJson) throws LogWriterInitException{
+    public static void Init(Config config) throws LogWriterInitException{
+        String errorLogPath = config.GET_ERROR_LOG_DIRECTORY();
+        String operationLogPath = config.GET_OPERATION_LOG_DIRECTORY();
         try {
             if(!IOWorker.isDirectory(errorLogPath))
          throw new LogWriterInitException("Poskytnuta cesta pro umisteni error logu nekonci adresarem. :"+errorLogPath);
@@ -258,7 +258,7 @@ public class LogWriter {
         LogWriter.errorLogPath = errorLogPath;
         LogWriter.operationLogPath = operationLogPath;
         checkFilesExist(errorLogPath, operationLogPath);
-        LogWriter.configJson = configJson;
+        LogWriter.config = config;
 
         } catch (SecurityException e) {
             throw new LogWriterInitException("Nastal problém s přístupem k souborům. Zkontrolujte prosím že jsou všechny nakonfigurované soubory a složky správně přístupné.");

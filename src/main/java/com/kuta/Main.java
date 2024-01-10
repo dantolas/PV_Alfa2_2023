@@ -18,8 +18,7 @@ public class Main {
 
         try {
             config = Config.initFromJsonFile("/home/charming/Projects/code/pv/java/alfa2/config/config.json");
-            String configJson = com.kuta.vendor.Gson.gson.toJson(config);
-            LogWriter.Init(config.GET_ERROR_LOG_DIRECTORY(), config.GET_OPERATION_LOG_DIRECTORY(),configJson);
+            LogWriter.Init(config);
             compressor = new Compressor();
         } catch (ConfigInitException | LogWriterInitException e) {
             handler.HandleError(e);
