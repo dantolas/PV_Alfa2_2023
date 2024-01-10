@@ -76,6 +76,7 @@ public class ErrorHandler {
             System.out.println(OBECNA_ERROR_ZPRAVA + newLogId);
         } catch (IOException e1) {
             System.out.println("Nepodařilo se napsat log.");
+            e.printStackTrace();
         }
     }
     /**
@@ -89,6 +90,7 @@ public class ErrorHandler {
             System.out.println(OBECNA_ERROR_ZPRAVA + newLogId);
         } catch (IOException e1) {
             System.out.println("Nepodařilo se napsat log.");
+            e.printStackTrace();
         }
     }
 

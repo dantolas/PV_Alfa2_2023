@@ -32,6 +32,7 @@ public class Main {
             System.out.println("Prosím zkontroluje konfiguraci, a záznam v error logu.");
             System.out.println("|ENTER| pro exit.");
             System.console().readLine();
+            return;
         }
         UI ui = new UI("->", "|Vítejte|", config, compressor,handler);
         ui.run();

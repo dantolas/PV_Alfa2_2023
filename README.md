@@ -16,21 +16,26 @@
 
 ### Potřeby pro spuštění
 Některé věci nejsou striktně potřeba ke spuštění, ale pro plnou funkcionalitu a nejlepší zkušenost je nejlepší udělat vše. Tyto kroky jsou označeny jako *NEPOVINNÉ*
+- - *Specificky je idealní pokud je nainstalovaný Gradle pro případné problémy a přístup k javadoc dokumentaci, a jiným užitečným částem.*
 - **Java verze 20.0 +**
     - **Dá se zjistit pomocí konzolového příkazu `java --version`**
 - **Gradle verze 8.4 +** - *NEPOVINNÉ*
 
 ### Jak spustit program
 
+Prosím nejdříve zkontrolujte konfiguraci jestli jsou buď veškerá nastavení na `default`, a nebo jestli vyhovuje vaším představám.
 
-- **Linux / Unix / Mac**
-    - **Pokud je nainstalován Gradle**
+- **Pokud je nainstalován Gradle** *NEPOVINNÉ*
+    - **Linux / Unix / Mac**
         - Navigujte do adresáře programu v konzoli
     použijte tento příkaz : `./gradlew build`
-- **Windows**
-    - **Pokud je nainstalován Gradle**
-        - Navigujte do adresáře programu v konzoli
-    použijte tento příkaz : `gradlew build`
+    - **Windows**
+        - **Pokud je nainstalován Gradle**
+            - Navigujte do adresáře programu v konzoli
+        použijte tento příkaz : `gradlew build`
+
+- **Navigujte** do adresáře kde kde máte projekt uložený, a spusťte soubor **Kuta_Alfa2_RunMe-all.jar**
+    - Můžete spustit příkazem `java -jar Kuta_Alfa2_RunMe-all.jar`
 
 ### Konfigurace programu
 Veškerou konfiguraci se dá provádět úpravami souboru config.json v adresáři config.

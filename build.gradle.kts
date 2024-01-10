@@ -30,6 +30,16 @@ tasks {
         from(zipTree(file.absoluteFile))
     }
     }
+
+    shadowJar {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    archiveBaseName.set("Kuta_Alfa2_RunMe")
+    destinationDirectory.set(File("./"))
+    mergeServiceFiles()
+    manifest {
+        attributes("Main-Class" to "com.kuta.Main")
+    }
+  }
 }
 
 
