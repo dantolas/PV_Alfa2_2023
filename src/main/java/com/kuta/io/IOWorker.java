@@ -105,6 +105,16 @@ public class IOWorker {
     }
 
     /**
+     * Deletes a file based on path provided.
+     * @param filepath
+     * @throws IOException
+     */
+    public static void DeleteFile(String filepath) throws IOException{
+        Path newFilePath = Path.of(filepath);
+        Files.delete(newFilePath);
+    }
+
+    /**
      * Get size of file in bytes
      * @param filepath
      * @return

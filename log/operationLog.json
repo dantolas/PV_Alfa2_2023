@@ -187,5 +187,14 @@
     "velikost_input_souboru": "641.0KB",
     "velikost_komp_souboru": "571.0KB",
     "procentualni_komprese": "10.92%"
+  },
+  {
+    "cas": "10.01.2024_17-12-09",
+    "input_soubor": "/home/charming/Projects/code/pv/java/alfa2/src/main/resources/testTextLong.txt",
+    "status": "success",
+    "error_log_id": "",
+    "velikost_input_souboru": "641.0KB",
+    "velikost_komp_souboru": "571.0KB",
+    "procentualni_komprese": "10.92%"
   }
 ]

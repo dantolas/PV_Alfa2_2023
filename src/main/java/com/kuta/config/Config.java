@@ -145,7 +145,7 @@ public class Config {
      * 
      * It only changes to default paths if the value in config file is exactly (case insensitive) 'default'
      */
-    private void checkDefaults(){
+    public void checkDefaults(){
 
      
         if(this.PATH_TO_INPUT.toLowerCase().startsWith("default")){
