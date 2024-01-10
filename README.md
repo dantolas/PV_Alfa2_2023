@@ -1,40 +1,43 @@
-# Projekt alfa2 -- Ztratova komprese textu a Logovani
+# Projekt alfa2 -- Ztrátová komprese textu a Logování
 ## Kuta Samuel C4b 
 
-**Tento program ztratove kompresuje textove soubory tak, aby i po kompresi byly citelne lidmi.**
+**Tento program ztrátově komprimuje textové soubory tak, aby i po kompresi byly čitelné lidmi.**
 
-## Program poskytuje funkcionalitu na kompresi textovych souboru, vytvareni log zaznamu a prohledavani techto zaznamu
+## Program poskytuje funkcionalitu na kompresi textových souborů, vytváření logu záznamu a prohledávání těchto záznamů
 
-### Prubeh programu
-- Program nacte textovy soubor, zkompressuje text napsany v souboru a zapise ho do nove slozky.
-- Nasledne provede zapis zaznamu (log) o provedene operaci
-- O jakkekoliv chybe budete v programu informovani, jak ji vyresit, a bude o ni zapsan zaznam (log) s blizsimi informacemi. 
-- Vsechny tyto casti programu se daji konfigurovat, vice informaci v casti [Konfigurace programu](#konfigurace-programu)
+### PODPOROVANÉ JAZYKY:
+- ### Čeština
 
-### Potreby pro spusteni
-Nektere veci nejsou striktne potreba ke spusteni, ale pro plnou funkcnost a nejlepis zkusenost je nejlepsi udelat vse. Tyto kroky jsou oznaceny jako *NEPOVINNE*
+### Průběh programu
+- Program načte textový soubor, zkompresuje text napsaný v souboru a zapíše ho do nové složky.
+- Následně provede zápis záznamu (logu) o provedené operaci.
+- O jakékoliv chybě budete v programu informováni, jak ji vyřešit, a bude o ní zapsán záznam (log) s bližšími informacemi. 
+- Všechny tyto části programu se dají konfigurovat, více informací v části [Konfigurace programu](#konfigurace-programu)
+
+### Potřeby pro spuštění
+Některé věci nejsou striktně potřeba ke spuštění, ale pro plnou funkcionalitu a nejlepší zkušenost je nejlepší udělat vše. Tyto kroky jsou označeny jako *NEPOVINNÉ*
 - **Java verze 17.0 +**
-    - **Da se zjistit pomoci konzoloveho prikazu `java --version`**
-- **Gradle verze 8.4 +** - *NEPOVINNE*
+    - **Dá se zjistit pomocí konzolového příkazu `java --version`**
+- **Gradle verze 8.4 +** - *NEPOVINNÉ*
 
 ### Jak spustit program
 
 
 - **Linux / Unix / Mac**
-    - **Pokud je nainstalovany Gradle**
-        - Navigujte do adresare programu v konzoli
-    pouzijte tento prikaz : `./gradlew build`
+    - **Pokud je nainstalován Gradle**
+        - Navigujte do adresáře programu v konzoli
+    použijte tento příkaz : `./gradlew build`
 - **Windows**
-    - **Pokud je nainstalovany Gradle**
-        - Navigujte do adresare programu v konzoli
-    pouzijte tento prikaz : `gradlew build`
+    - **Pokud je nainstalován Gradle**
+        - Navigujte do adresáře programu v konzoli
+    použijte tento příkaz : `gradlew build`
 
 ### Konfigurace programu
-Veskera konfigurace se da provadet upravami souboru config.json v adresari config.
+Veškerou konfiguraci se dá provádět úpravami souboru config.json v adresáři config.
 
-Config soubor je ve formatu json, a pokud bude dodrzen presny format tak muze byt nahrazen vlastnim config souborem.
+Config soubor je ve formátu json, a pokud bude dodržen přesný formát, může být nahrazen vlastním config souborem.
 
-Priklad **config** souboru:
+Příklad **config** souboru:
 
 
     {
@@ -46,9 +49,9 @@ Priklad **config** souboru:
     "adresar_umisteni_operacniho_logu":"default"
     }
 
-**Defaultni konfigurace**
-- Pro defaultni konfiguraci, napriklad pro testovani, by mely byt vsechny hodnoty zapsane na `default`
-- **Defaultni konfigurace**:
+**Defaultní konfigurace**
+- Pro defaultní konfiguraci, například pro testování, by měly být všechny hodnoty zapsané na `default`
+- **Defaultní konfigurace**:
     
         {
         "cesta_k_souboru":"default",
@@ -61,27 +64,44 @@ Priklad **config** souboru:
     
 
 
-**Da se konfiguvrovat**:
+**Dá se konfigurovat**:
 - **Input soubor**
-    - Ktery soubor bude precten a text v nem kompresovan
+    - Který soubor bude přečten a text v něm kompresován
     - Cesta k souboru
-- **Adresar output souboru**
-    - Ve kterem adresari bude soubor s kompresovanym textem ulozen
-    - Cesta do adresare
-- **Jmeno output souboru**
-    - Jak se ma jmenovat soubor s kompresovanym textem
-- **Casovy tag k output souboru**
-    - Jestli se do jmena kompresovaneho souboru ma pripsat cas kdy se operace stala
+- **Adresář output souboru**
+    - Ve kterém adresáři bude soubor s kompresovaným textem uložen
+    - Cesta do adresáře
+- **Jméno output souboru**
+    - Jak se má jmenovat soubor s kompresovaným textem
+- **Časový tag k output souboru**
+    - Jestli se do jména kompresovaného souboru má připsat čas, kdy se operace stala
     - A = ano | N = ne
-- **Adresar error logu**
-    - Ve kterem adresari bude ulozeny zaznam o chybach
-- **Adresar operacniho logu**
-    - Ve kterem adresari bude ulozeny zaznam o operacich
+- **Adresář error logu**
+    - Ve kterém adresáři bude uložen záznam o chybách
+- **Adresář operacního logu**
+    - Ve kterém adresáři bude uložen záznam o operacích
 ### Dokumentace
-- **Programatorska dokumentace** 
-    - Po provedeni Gradle prikazu v casti [Jak spustit program](#jak-spustit-program) bude ve adresari build/docs/javadoc index.html soubor. Zobrazte v prohlizeci pro kompletni javadoc.
-    - Zdrojovy kod je take dokumentovany
-- **Uzivatelska dokumentace**
-    - Ted ji ctete, tento soubor slouzi jako uzivatelska dokumentace
+- **Programátorská dokumentace** 
+    - Po provedení Gradle příkazu v části [Jak spustit program](#jak-spustit-program) bude ve adresáři build/docs/javadoc index.html soubor. Zobrazte v prohlížeči pro kompletní javadoc.
+    - Zdrojový kód je také dokumentován
+- **Uživatelská dokumentace**
+    - Teď ji čtete, tento soubor slouží jako uživatelská dokumentace
 
-### Technicky popis programu
+### Testování
+- Veškeré unit testy naleznete v adresáři **src/test/java/com/kuta**
+- Unit testy můžete spustit příkazem pokud je nainstalovaný Gradle: NEPOVINNÉ
+    - **Linux** `./gradlew test`
+    - **Windows** `gradlew test`
+    - Zprávu o provedených testech naleznete v adresáři **build/reports/tests/test/index.html** otevřete soubor v prohlížeči
+
+
+## Závislosti / Dependencies
+- Program využívá nástroje na JSON Serializace a Deserializace od Googlu. Nástroj se jmenuje [GSON](https://github.com/google/gson) 
+
+- Na unit testování program využíva **JUnit**, protože Java nemá ve svých základních knihovnách způsob jak unit testovat.
+- **JUnit** je best practice v unit testování
+
+## Závěr a nedostatky
+- Zadání technicky splňuje do nějáké míry všechny požadavky, ale má své nedostatky.
+- Specificky **Komprese/Komprimace** byla udělaná velice rychle a nesofistikovaně, s průměrným zmenšením cca **10%**
+- Unit testy testují hlavní funkce programu, nepokrývají celý program.
