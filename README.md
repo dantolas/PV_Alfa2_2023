@@ -16,7 +16,7 @@
 
 ### Potřeby pro spuštění
 Některé věci nejsou striktně potřeba ke spuštění, ale pro plnou funkcionalitu a nejlepší zkušenost je nejlepší udělat vše. Tyto kroky jsou označeny jako *NEPOVINNÉ*
-- **Java verze 17.0 +**
+- **Java verze 20.0 +**
     - **Dá se zjistit pomocí konzolového příkazu `java --version`**
 - **Gradle verze 8.4 +** - *NEPOVINNÉ*
 

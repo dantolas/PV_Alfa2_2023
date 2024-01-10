@@ -17,7 +17,7 @@ public class Main {
         Compressor compressor = null;
 
         try {
-            config = Config.initFromJsonFile("/home/charming/Projects/code/pv/java/alfa2/config/config.json");
+            config = Config.initFromJsonFile(Config.DEFAULT_CONFIG_PATH);
             LogWriter.Init(config);
             compressor = new Compressor();
         } catch (ConfigInitException | LogWriterInitException e) {
