@@ -39,9 +39,9 @@ public class OperationLog {
 
     @Override
     public String toString() {
-        return "OperationLog [time=" + time + ", inputFilePath=" + inputFilePath + ", status=" + status
-                + ", errorLogId=" + errorLogId + ", inputFileSize=" + inputFileSize + ", compressedFileSize="
-                + compressedFileSize + ", compressionPercentage=" + compressionPercentage + "]";
+        return "{\ncas:" + time + ",\ninput_soubor:" + inputFilePath + ",\nstatus=" + status
+                + ",\nerror_log_id:" + errorLogId + ",\nvelikost_input_souboru" + inputFileSize + ",\nvelikost_komp_souboru:"
+                + compressedFileSize + ",\nprocentualni_komprese" + compressionPercentage + "\n}";
     }
 
 

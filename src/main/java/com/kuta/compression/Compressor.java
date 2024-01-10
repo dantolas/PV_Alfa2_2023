@@ -136,7 +136,7 @@ public class Compressor {
 
         HashMap<String,String> shortcuts = getShortcutsFromMap(topFrequencies);
         for (String word : shortcuts.keySet()) {
-            text.replaceFirst(word,"("+shortcuts.get(word)+")");
+            text.replaceFirst(word,word+"("+shortcuts.get(word)+")");
             text = text.replaceAll(word+negativeShortcutLookahead, shortcuts.get(word));
         }
 

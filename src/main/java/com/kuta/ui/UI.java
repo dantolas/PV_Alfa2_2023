@@ -3,13 +3,14 @@ package com.kuta.ui;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
-
 import com.kuta.compression.Compressor;
 import com.kuta.config.Config;
 import com.kuta.errorhandling.CompressionFailedException;
 import com.kuta.errorhandling.ErrorHandler;
 import com.kuta.io.IOWorker;
+import com.kuta.log.ErrorLog;
 import com.kuta.log.LogWriter;
+import com.kuta.log.OperationLog;
 
 /**
  * This class provides all the necessary functionality
@@ -43,7 +44,7 @@ public class UI {
             try {
                 System.out.print(INPUT_POINTER);
                 String input = scanner.nextLine();
-                handleInput(input);
+                handleInput(input,scanner);
             } catch (Exception e) {
                 HANDLER.HandleError(e);
             }
@@ -59,7 +60,7 @@ public class UI {
      * @throws IOException
      * @throws CompressionFailedException - Special exception thrown when compression fails
      */
-    private void handleInput(String input) throws FileNotFoundException, IOException, CompressionFailedException{
+    private void handleInput(String input,Scanner scanner) throws FileNotFoundException, IOException, CompressionFailedException{
         switch (input) {
             case "":
                 break;
@@ -73,8 +74,9 @@ public class UI {
                 break;
 
             case "log":
-                throw new IOException("Test exception from log input.");
-
+                 
+                logLookup(input,scanner);
+                break;
             case "sysinfo":
                 System.out.println(getSysInfo());
                 break;
@@ -88,6 +90,10 @@ public class UI {
                 System.out.println("Neznámý příkaz '"+input+"'");
                 break;
         }
+    }
+
+    private boolean stringStartsWith(String string, String prefix){
+        return string.toLowerCase().startsWith(prefix);
     }
     /**
      * Used when user inputs 'help'
@@ -112,6 +118,125 @@ public class UI {
      */
     private String getSysInfo(){
         return "Working directory :"+System.getProperty("user.dir")+"\n Operating System:"+System.getProperty("os.name");
+    }
+
+    private void logLookup(String input,Scanner scanner) throws FileNotFoundException, IOException{
+        while (true) {
+                System.out.println("(O) -> Operacni log\n(E) - Error log\n   exit -> Zpatky.");
+                System.out.print(INPUT_POINTER);
+                input = scanner.nextLine();
+                if(input == null) continue;
+                if(input.toLowerCase().equals("exit")) return;
+
+                if(stringStartsWith(input, "o")){
+                    OperationLog log = operLogLookup(input, scanner);
+                    if (log == null) {
+                        System.out.println("Log nebyl nalezen.");
+                        return;
+                    }
+                    System.out.println(log);
+                }
+
+                if(stringStartsWith(input, "e")){
+                    ErrorLog log = errorLogLookup(input, scanner);
+                    if(log == null){
+                        System.out.println("Log nebyl nalezen.");
+                        return;
+                    } 
+                    System.out.println(log);
+                    
+                }
+
+        }
+        
+    }
+
+    private OperationLog operLogLookup(String input, Scanner scanner) throws FileNotFoundException, IOException{
+        while (true) {
+                System.out.println("(N) -> Nejnovejsi zaznam\n(P) -> Podle casu\n   exit -> Zpatky.");
+                System.out.print(INPUT_POINTER);
+                input = scanner.nextLine();
+                if(input == null) continue;
+                if(input.toLowerCase().equals("exit")) return null;
+
+                if(stringStartsWith(input, "p")){
+                    System.out.println("Zadejte cas (format: dd.MM.yyyy_HH-mm-ss priklad:10.01.2024_08-58-58):");
+                    System.out.print(INPUT_POINTER);
+                    input = scanner.nextLine();
+                    return getOperLogByTime(input);
+                    
+                }
+
+                if(stringStartsWith(input, "n")){
+                    return getLastOperLog();
+                }
+
+                
+        }
+    }
+
+    private OperationLog getOperLogByTime(String time) throws FileNotFoundException, IOException{
+        OperationLog[] logs= LogWriter.getOperationLogArray();
+        for (OperationLog operLog : logs) {
+            if(operLog.time.equals(time)) return operLog;
+        }
+        return null;
+    }
+
+    private OperationLog getLastOperLog() throws FileNotFoundException, IOException{
+        OperationLog[] logs = LogWriter.getOperationLogArray();
+        return logs[logs.length -1];
+    }
+
+    private ErrorLog errorLogLookup(String input,Scanner scanner) throws FileNotFoundException, IOException{
+        while (true) {
+                System.out.println("(N) -> Nejnovejsi zaznam\n(P) -> Podle casu\n(ID) -> Podle ID\n   exit -> Zpatky.");
+                System.out.print(INPUT_POINTER);
+                input = scanner.nextLine();
+                if(input == null) continue;
+                if(input.toLowerCase().equals("exit")) return null;
+
+                if(stringStartsWith(input, "p")){
+                    System.out.println("Zadejte cas (format: dd.MM.yyyy_HH-mm-ss priklad:10.01.2024_08-58-58):");
+                    System.out.print(INPUT_POINTER);
+                    input = scanner.nextLine();
+                    return getErrorLogByTime(input);
+                    
+                }
+
+                if(stringStartsWith(input, "n")){
+                    return getLastErrorLog();
+                }
+
+                if(stringStartsWith(input, "id")){
+                    System.out.println("Zadejte id (priklad: f69bcc98-f96e-4eb4-9299-04fe6385bcd4): ");
+                    System.out.print(INPUT_POINTER);
+                    input = scanner.nextLine();
+                    return getErrorLogByID(input);
+                }
+
+        }
+    }
+
+    private ErrorLog getLastErrorLog() throws FileNotFoundException, IOException{
+        ErrorLog[] logs= LogWriter.getErrorLogArray();
+        return logs[logs.length - 1];
+    }
+
+    private ErrorLog getErrorLogByTime(String time) throws FileNotFoundException, IOException{
+        ErrorLog[] logs= LogWriter.getErrorLogArray();
+        for (ErrorLog errorLog : logs) {
+            if(errorLog.time.equals(time)) return errorLog;
+        }
+        return null;
+    }
+
+    private ErrorLog getErrorLogByID(String id) throws FileNotFoundException, IOException{
+        ErrorLog[] logs= LogWriter.getErrorLogArray();
+        for (ErrorLog errorLog : logs) {
+            if(errorLog.id.equals(id)) return errorLog;
+        }
+        return null;
     }
 
     /**

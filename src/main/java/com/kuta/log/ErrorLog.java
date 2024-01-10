@@ -1,7 +1,4 @@
 package com.kuta.log;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
 import com.google.gson.annotations.SerializedName;
 import com.kuta.config.Config;
 
@@ -38,8 +35,8 @@ public class ErrorLog {
 
     @Override
     public String toString() {
-        return "ErrorLog [time=" + time + ", id=" + id + ", exceptionName=" + exceptionName + ", exceptionText="
-                + exceptionText + ", stacktrace=" + stacktrace +" Config:"+config+"]";
+        return "{\nCas:" + time + ",\nid:" + id + ",\nazev_chyby:" + exceptionName + ",\n=text_chyby"
+                + exceptionText + ",\nstacktrace:" + stacktrace.substring(0,40) +"\nkonfigurace:\n"+config+"\n}";
     }
 
     

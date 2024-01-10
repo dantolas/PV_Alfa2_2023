@@ -58,5 +58,110 @@
       "adresar_umisteni_operacniho_logu": "/home/charming/Projects/code/pv/java/alfa2/log/",
       "casovy_tag_v_nazvu": "A"
     }
+  },
+  {
+    "cas": "10.01.2024_08-36-07",
+    "id": "5e9b19a4-f0fa-4418-9d29-27f6ba59632b",
+    "nazev_chyby": "com.google.gson.JsonSyntaxException",
+    "text_chyby": "java.lang.IllegalStateException: Expected BEGIN_ARRAY but was STRING at line 1 column 1 path $",
+    "stacktrace": "com.google.gson.JsonSyntaxException: java.lang.IllegalStateException: Expected BEGIN_ARRAY but was STRING at line 1 column 1 path $\n\tat com.google.gson.Gson.fromJson(Gson.java:1238)\n\tat com.google.gson.Gson.fromJson(Gson.java:1137)\n\tat com.google.gson.Gson.fromJson(Gson.java:1047)\n\tat com.google.gson.Gson.fromJson(Gson.java:982)\n\tat com.kuta.log.LogWriter.jsonToErrorLogArray(LogWriter.java:71)\n\tat com.kuta.log.LogWriter.getErrorLogsQueue(LogWriter.java:299)\n\tat com.kuta.ui.UI.logLookup(UI.java:120)\n\tat com.kuta.ui.UI.handleInput(UI.java:78)\n\tat com.kuta.ui.UI.run(UI.java:48)\n\tat com.kuta.Main.main(Main.java:49)\nCaused by: java.lang.IllegalStateException: Expected BEGIN_ARRAY but was STRING at line 1 column 1 path $\n\tat com.google.gson.stream.JsonReader.beginArray(JsonReader.java:358)\n\tat com.google.gson.internal.bind.ArrayTypeAdapter.read(ArrayTypeAdapter.java:70)\n\tat com.google.gson.Gson.fromJson(Gson.java:1227)\n\t... 9 more\n",
+    "konfigurace": {
+      "cesta_k_souboru": "/home/charming/Projects/code/pv/java/alfa2/src/main/resources/testTextLong.txt",
+      "adresar_umisteni_outputu": "/home/charming/Projects/code/pv/java/alfa2/output/",
+      "nazev_output_souboru": "Compressed.txt",
+      "adresar_umisteni_error_logu": "/home/charming/Projects/code/pv/java/alfa2/log/",
+      "adresar_umisteni_operacniho_logu": "/home/charming/Projects/code/pv/java/alfa2/log/",
+      "casovy_tag_v_nazvu": "A"
+    }
+  },
+  {
+    "cas": "10.01.2024_08-38-06",
+    "id": "fea382af-a73e-4abd-8700-a1da8099dacc",
+    "nazev_chyby": "com.google.gson.JsonSyntaxException",
+    "text_chyby": "java.lang.IllegalStateException: Expected BEGIN_ARRAY but was STRING at line 1 column 1 path $",
+    "stacktrace": "com.google.gson.JsonSyntaxException: java.lang.IllegalStateException: Expected BEGIN_ARRAY but was STRING at line 1 column 1 path $\n\tat com.google.gson.Gson.fromJson(Gson.java:1238)\n\tat com.google.gson.Gson.fromJson(Gson.java:1137)\n\tat com.google.gson.Gson.fromJson(Gson.java:1047)\n\tat com.google.gson.Gson.fromJson(Gson.java:982)\n\tat com.kuta.log.LogWriter.jsonToErrorLogArray(LogWriter.java:71)\n\tat com.kuta.log.LogWriter.getErrorLogsQueue(LogWriter.java:299)\n\tat com.kuta.ui.UI.logLookup(UI.java:120)\n\tat com.kuta.ui.UI.handleInput(UI.java:78)\n\tat com.kuta.ui.UI.run(UI.java:48)\n\tat com.kuta.Main.main(Main.java:49)\nCaused by: java.lang.IllegalStateException: Expected BEGIN_ARRAY but was STRING at line 1 column 1 path $\n\tat com.google.gson.stream.JsonReader.beginArray(JsonReader.java:358)\n\tat com.google.gson.internal.bind.ArrayTypeAdapter.read(ArrayTypeAdapter.java:70)\n\tat com.google.gson.Gson.fromJson(Gson.java:1227)\n\t... 9 more\n",
+    "konfigurace": {
+      "cesta_k_souboru": "/home/charming/Projects/code/pv/java/alfa2/src/main/resources/testTextLong.txt",
+      "adresar_umisteni_outputu": "/home/charming/Projects/code/pv/java/alfa2/output/",
+      "nazev_output_souboru": "Compressed.txt",
+      "adresar_umisteni_error_logu": "/home/charming/Projects/code/pv/java/alfa2/log/",
+      "adresar_umisteni_operacniho_logu": "/home/charming/Projects/code/pv/java/alfa2/log/",
+      "casovy_tag_v_nazvu": "A"
+    }
+  },
+  {
+    "cas": "10.01.2024_08-48-20",
+    "id": "23391399-8a96-4c1d-a1f0-d501d3df850a",
+    "nazev_chyby": "com.google.gson.JsonSyntaxException",
+    "text_chyby": "java.lang.IllegalStateException: Expected BEGIN_ARRAY but was STRING at line 1 column 1 path $",
+    "stacktrace": "com.google.gson.JsonSyntaxException: java.lang.IllegalStateException: Expected BEGIN_ARRAY but was STRING at line 1 column 1 path $\n\tat com.google.gson.Gson.fromJson(Gson.java:1238)\n\tat com.google.gson.Gson.fromJson(Gson.java:1137)\n\tat com.google.gson.Gson.fromJson(Gson.java:1047)\n\tat com.google.gson.Gson.fromJson(Gson.java:982)\n\tat com.kuta.log.LogWriter.jsonToErrorLogArray(LogWriter.java:71)\n\tat com.kuta.log.LogWriter.getErrorLogsQueue(LogWriter.java:299)\n\tat com.kuta.ui.UI.logLookup(UI.java:121)\n\tat com.kuta.ui.UI.handleInput(UI.java:78)\n\tat com.kuta.ui.UI.run(UI.java:48)\n\tat com.kuta.Main.main(Main.java:49)\nCaused by: java.lang.IllegalStateException: Expected BEGIN_ARRAY but was STRING at line 1 column 1 path $\n\tat com.google.gson.stream.JsonReader.beginArray(JsonReader.java:358)\n\tat com.google.gson.internal.bind.ArrayTypeAdapter.read(ArrayTypeAdapter.java:70)\n\tat com.google.gson.Gson.fromJson(Gson.java:1227)\n\t... 9 more\n",
+    "konfigurace": {
+      "cesta_k_souboru": "/home/charming/Projects/code/pv/java/alfa2/src/main/resources/testTextLong.txt",
+      "adresar_umisteni_outputu": "/home/charming/Projects/code/pv/java/alfa2/output/",
+      "nazev_output_souboru": "Compressed.txt",
+      "adresar_umisteni_error_logu": "/home/charming/Projects/code/pv/java/alfa2/log/",
+      "adresar_umisteni_operacniho_logu": "/home/charming/Projects/code/pv/java/alfa2/log/",
+      "casovy_tag_v_nazvu": "A"
+    }
+  },
+  {
+    "cas": "10.01.2024_08-52-14",
+    "id": "aa573c1a-ea4b-461b-93ba-b5a73c121849",
+    "nazev_chyby": "com.google.gson.JsonSyntaxException",
+    "text_chyby": "java.lang.IllegalStateException: Expected BEGIN_ARRAY but was STRING at line 1 column 1 path $",
+    "stacktrace": "com.google.gson.JsonSyntaxException: java.lang.IllegalStateException: Expected BEGIN_ARRAY but was STRING at line 1 column 1 path $\n\tat com.google.gson.Gson.fromJson(Gson.java:1238)\n\tat com.google.gson.Gson.fromJson(Gson.java:1137)\n\tat com.google.gson.Gson.fromJson(Gson.java:1047)\n\tat com.google.gson.Gson.fromJson(Gson.java:982)\n\tat com.kuta.log.LogWriter.jsonToErrorLogArray(LogWriter.java:71)\n\tat com.kuta.log.LogWriter.getErrorLogsQueue(LogWriter.java:299)\n\tat com.kuta.ui.UI.logLookup(UI.java:170)\n\tat com.kuta.ui.UI.handleInput(UI.java:78)\n\tat com.kuta.ui.UI.run(UI.java:48)\n\tat com.kuta.Main.main(Main.java:49)\nCaused by: java.lang.IllegalStateException: Expected BEGIN_ARRAY but was STRING at line 1 column 1 path $\n\tat com.google.gson.stream.JsonReader.beginArray(JsonReader.java:358)\n\tat com.google.gson.internal.bind.ArrayTypeAdapter.read(ArrayTypeAdapter.java:70)\n\tat com.google.gson.Gson.fromJson(Gson.java:1227)\n\t... 9 more\n",
+    "konfigurace": {
+      "cesta_k_souboru": "/home/charming/Projects/code/pv/java/alfa2/src/main/resources/testTextLong.txt",
+      "adresar_umisteni_outputu": "/home/charming/Projects/code/pv/java/alfa2/output/",
+      "nazev_output_souboru": "Compressed.txt",
+      "adresar_umisteni_error_logu": "/home/charming/Projects/code/pv/java/alfa2/log/",
+      "adresar_umisteni_operacniho_logu": "/home/charming/Projects/code/pv/java/alfa2/log/",
+      "casovy_tag_v_nazvu": "A"
+    }
+  },
+  {
+    "cas": "10.01.2024_08-55-00",
+    "id": "0b0717a3-a81e-48dd-99f3-3e0784d75c90",
+    "nazev_chyby": "com.google.gson.JsonSyntaxException",
+    "text_chyby": "com.google.gson.stream.MalformedJsonException: Expected value at line 1 column 1 path $",
+    "stacktrace": "com.google.gson.JsonSyntaxException: com.google.gson.stream.MalformedJsonException: Expected value at line 1 column 1 path $\n\tat com.google.gson.Gson.fromJson(Gson.java:1241)\n\tat com.google.gson.Gson.fromJson(Gson.java:1137)\n\tat com.google.gson.Gson.fromJson(Gson.java:1047)\n\tat com.google.gson.Gson.fromJson(Gson.java:982)\n\tat com.kuta.log.LogWriter.jsonToErrorLogArray(LogWriter.java:71)\n\tat com.kuta.log.LogWriter.getErrorLogsQueue(LogWriter.java:299)\n\tat com.kuta.ui.UI.logLookup(UI.java:121)\n\tat com.kuta.ui.UI.handleInput(UI.java:78)\n\tat com.kuta.ui.UI.run(UI.java:48)\n\tat com.kuta.Main.main(Main.java:49)\nCaused by: com.google.gson.stream.MalformedJsonException: Expected value at line 1 column 1 path $\n\tat com.google.gson.stream.JsonReader.syntaxError(JsonReader.java:1659)\n\tat com.google.gson.stream.JsonReader.doPeek(JsonReader.java:599)\n\tat com.google.gson.stream.JsonReader.peek(JsonReader.java:433)\n\tat com.google.gson.Gson.fromJson(Gson.java:1224)\n\t... 9 more\n",
+    "konfigurace": {
+      "cesta_k_souboru": "/home/charming/Projects/code/pv/java/alfa2/src/main/resources/testTextLong.txt",
+      "adresar_umisteni_outputu": "/home/charming/Projects/code/pv/java/alfa2/output/",
+      "nazev_output_souboru": "Compressed.txt",
+      "adresar_umisteni_error_logu": "/home/charming/Projects/code/pv/java/alfa2/log/",
+      "adresar_umisteni_operacniho_logu": "/home/charming/Projects/code/pv/java/alfa2/log/",
+      "casovy_tag_v_nazvu": "A"
+    }
+  },
+  {
+    "cas": "10.01.2024_08-58-58",
+    "id": "f69bcc98-f96e-4eb4-9299-04fe6385bcd4",
+    "nazev_chyby": "com.google.gson.JsonSyntaxException",
+    "text_chyby": "com.google.gson.stream.MalformedJsonException: Expected value at line 1 column 1 path $",
+    "stacktrace": "com.google.gson.JsonSyntaxException: com.google.gson.stream.MalformedJsonException: Expected value at line 1 column 1 path $\n\tat com.google.gson.Gson.fromJson(Gson.java:1241)\n\tat com.google.gson.Gson.fromJson(Gson.java:1137)\n\tat com.google.gson.Gson.fromJson(Gson.java:1047)\n\tat com.google.gson.Gson.fromJson(Gson.java:982)\n\tat com.kuta.log.LogWriter.jsonToErrorLogArray(LogWriter.java:71)\n\tat com.kuta.log.LogWriter.getErrorLogsQueue(LogWriter.java:299)\n\tat com.kuta.ui.UI.logLookup(UI.java:121)\n\tat com.kuta.ui.UI.handleInput(UI.java:78)\n\tat com.kuta.ui.UI.run(UI.java:48)\n\tat com.kuta.Main.main(Main.java:49)\nCaused by: com.google.gson.stream.MalformedJsonException: Expected value at line 1 column 1 path $\n\tat com.google.gson.stream.JsonReader.syntaxError(JsonReader.java:1659)\n\tat com.google.gson.stream.JsonReader.doPeek(JsonReader.java:599)\n\tat com.google.gson.stream.JsonReader.peek(JsonReader.java:433)\n\tat com.google.gson.Gson.fromJson(Gson.java:1224)\n\t... 9 more\n",
+    "konfigurace": {
+      "cesta_k_souboru": "/home/charming/Projects/code/pv/java/alfa2/src/main/resources/testTextLong.txt",
+      "adresar_umisteni_outputu": "/home/charming/Projects/code/pv/java/alfa2/output/",
+      "nazev_output_souboru": "Compressed.txt",
+      "adresar_umisteni_error_logu": "/home/charming/Projects/code/pv/java/alfa2/log/",
+      "adresar_umisteni_operacniho_logu": "/home/charming/Projects/code/pv/java/alfa2/log/",
+      "casovy_tag_v_nazvu": "A"
+    }
+  },
+  {
+    "cas": "10.01.2024_10-41-41",
+    "id": "f3a81a59-f22b-4b4f-808b-55c37335a1c5",
+    "nazev_chyby": "com.google.gson.JsonSyntaxException",
+    "text_chyby": "com.google.gson.stream.MalformedJsonException: Expected value at line 1 column 1 path $",
+    "stacktrace": "com.google.gson.JsonSyntaxException: com.google.gson.stream.MalformedJsonException: Expected value at line 1 column 1 path $\n\tat com.google.gson.Gson.fromJson(Gson.java:1241)\n\tat com.google.gson.Gson.fromJson(Gson.java:1137)\n\tat com.google.gson.Gson.fromJson(Gson.java:1047)\n\tat com.google.gson.Gson.fromJson(Gson.java:982)\n\tat com.kuta.log.LogWriter.jsonToErrorLogArray(LogWriter.java:72)\n\tat com.kuta.log.LogWriter.getErrorLogArray(LogWriter.java:306)\n\tat com.kuta.ui.UI.getLastErrorLog(UI.java:225)\n\tat com.kuta.ui.UI.errorLogLookup(UI.java:211)\n\tat com.kuta.ui.UI.logLookup(UI.java:144)\n\tat com.kuta.ui.UI.handleInput(UI.java:81)\n\tat com.kuta.ui.UI.run(UI.java:50)\n\tat com.kuta.Main.main(Main.java:49)\nCaused by: com.google.gson.stream.MalformedJsonException: Expected value at line 1 column 1 path $\n\tat com.google.gson.stream.JsonReader.syntaxError(JsonReader.java:1659)\n\tat com.google.gson.stream.JsonReader.doPeek(JsonReader.java:599)\n\tat com.google.gson.stream.JsonReader.peek(JsonReader.java:433)\n\tat com.google.gson.Gson.fromJson(Gson.java:1224)\n\t... 11 more\n",
+    "konfigurace": {
+      "cesta_k_souboru": "/home/charming/Projects/code/pv/java/alfa2/src/main/resources/testTextLong.txt",
+      "adresar_umisteni_outputu": "/home/charming/Projects/code/pv/java/alfa2/output/",
+      "nazev_output_souboru": "Compressed.txt",
+      "adresar_umisteni_error_logu": "/home/charming/Projects/code/pv/java/alfa2/log/",
+      "adresar_umisteni_operacniho_logu": "/home/charming/Projects/code/pv/java/alfa2/log/",
+      "casovy_tag_v_nazvu": "A"
+    }
   }
 ]

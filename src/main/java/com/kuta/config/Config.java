@@ -69,9 +69,9 @@ public class Config {
 
     @Override
     public String toString() {
-        return "Config [PATH_TO_INPUT=" + PATH_TO_INPUT + ", OUTPUT_DIRECTORY=" + OUTPUT_DIRECTORY
-                + ", OUTPUT_FILENAME=" + OUTPUT_FILENAME + ", ERROR_LOG_DIRECTORY=" + ERROR_LOG_DIRECTORY
-                + ", OPERATION_LOG_DIRECTORY=" + OPERATION_LOG_DIRECTORY + "]";
+        return "{\ncesta_k_souboru:" + PATH_TO_INPUT + ",\nadresar_umisteni_outputu:" + OUTPUT_DIRECTORY
+                + ",\nnazev_output_souboru:" + OUTPUT_FILENAME + ",\nadresar_umisteni_error_logu:" + ERROR_LOG_DIRECTORY
+                + ",\nadresar_umisteni_operacniho_logu:" + OPERATION_LOG_DIRECTORY + "\ncasovy_tag_v_nazvu:"+TIME_TAG+"}";
     }
 
     /**
@@ -148,24 +148,28 @@ public class Config {
     private void checkDefaults(){
 
      
-        if(this.PATH_TO_INPUT.toLowerCase().equals("default")){
+        if(this.PATH_TO_INPUT.toLowerCase().startsWith("default")){
             this.PATH_TO_INPUT = Config.DEFAULT_PATHS[0];
         }
 
-        if(this.OUTPUT_DIRECTORY.toLowerCase().equals("default")){
+        if(this.OUTPUT_DIRECTORY.toLowerCase().startsWith("default")){
             this.OUTPUT_DIRECTORY = Config.DEFAULT_PATHS[1];
         }
 
-        if(this.OUTPUT_FILENAME.toLowerCase().equals("default")){
+        if(this.OUTPUT_FILENAME.toLowerCase().startsWith("default")){
             this.OUTPUT_FILENAME = Config.DEFAULT_PATHS[2];
         }
 
-        if(this.ERROR_LOG_DIRECTORY.toLowerCase().equals("default")){
+        if(this.ERROR_LOG_DIRECTORY.toLowerCase().startsWith("default")){
             this.ERROR_LOG_DIRECTORY = Config.DEFAULT_PATHS[3];
         }
 
-        if(this.OPERATION_LOG_DIRECTORY.toLowerCase().equals("default")){
+        if(this.OPERATION_LOG_DIRECTORY.toLowerCase().startsWith("default")){
             this.OPERATION_LOG_DIRECTORY = Config.DEFAULT_PATHS[3];
+        }
+
+        if(this.TIME_TAG.startsWith("default")){
+            this.TIME_TAG = "a";
         }
     }
     

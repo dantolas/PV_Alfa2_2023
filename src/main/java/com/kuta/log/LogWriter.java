@@ -1,5 +1,6 @@
 package com.kuta.log;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.io.PrintWriter;
@@ -11,6 +12,8 @@ import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.UUID;
 
 /**
@@ -168,7 +171,8 @@ public class LogWriter {
             inputSize = IOWorker.getFileSizeB(inputPath);
             double outputSize = IOWorker.getFileSizeB(outputPath);
             outputSize = IOWorker.getFileSizeB(outputPath);
-            float quotient =  (float)(100 - (( outputSize / inputSize) * 100));
+            double quotient =  (100 - (( outputSize / inputSize) * 100));
+            quotient = Math.floor(quotient * 100) / 100;
             String inputFileSize = Double.toString(inputSize) + "B";
             String compressedFileSize = Double.toString(outputSize) + "B";
 
@@ -181,7 +185,8 @@ public class LogWriter {
         if(inputSize >= 1_000_000){
             inputSize = IOWorker.getFileSizeMB(inputPath);
             double outputSize = IOWorker.getFileSizeMB(outputPath);
-            float quotient =  (float)(100 - (( outputSize / inputSize) * 100));
+            double quotient =  (100 - (( outputSize / inputSize) * 100));
+            quotient = Math.floor(quotient * 100) / 100;
             String inputFileSize = Double.toString(inputSize)+"MB";
             String compressedFileSize = Double.toString(outputSize)+"MB";
             
@@ -192,7 +197,8 @@ public class LogWriter {
         }
 
         double outputSize = IOWorker.getFileSizeKB(outputPath);
-        float quotient = (float) (100 - ((outputSize / inputSize) * 100));
+        double quotient = (100 - ((outputSize / inputSize) * 100));
+        quotient = Math.floor(quotient * 100) / 100;
         String inputFileSize = Double.toString(inputSize)+"KB";
         String compressedFileSize = Double.toString(outputSize)+"KB";
         
@@ -288,6 +294,22 @@ public class LogWriter {
         }
 
 
+    }
+
+    public static Queue<ErrorLog> getErrorLogStack() throws FileNotFoundException, IOException{
+        String json = IOWorker.readFileIntoString(errorLogPath+ERROR_FILE_NAME);
+        Queue<ErrorLog> queue = new LinkedList<>(Arrays.asList(jsonToErrorLogArray(json)));
+        return queue;
+    }
+
+    public static ErrorLog[] getErrorLogArray() throws FileNotFoundException, IOException{
+        String json = IOWorker.readFileIntoString(errorLogPath+ERROR_FILE_NAME);
+        return jsonToErrorLogArray(json);
+    }
+
+    public static OperationLog[] getOperationLogArray() throws FileNotFoundException, IOException{
+        String json = IOWorker.readFileIntoString(operationLogPath+OPERATION_FILE_NAME);
+        return jsonToOperationLogArray(json);
     }
 
     
